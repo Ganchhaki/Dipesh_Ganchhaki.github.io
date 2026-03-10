@@ -90,34 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   animatedElements.forEach(el => observer.observe(el));
 
-  // --- Counter Animation ---
-  const counters = document.querySelectorAll('[data-count]');
 
-  const counterObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const el = entry.target;
-        const target = parseInt(el.dataset.count);
-        let current = 0;
-        const increment = target / 40;
-        const duration = 1500;
-        const stepTime = duration / 40;
-
-        const timer = setInterval(() => {
-          current += increment;
-          if (current >= target) {
-            current = target;
-            clearInterval(timer);
-          }
-          el.textContent = Math.round(current);
-        }, stepTime);
-
-        counterObserver.unobserve(el);
-      }
-    });
-  }, { threshold: 0.5 });
-
-  counters.forEach(el => counterObserver.observe(el));
 
   // --- Active Navigation Highlight ---
   const sections = document.querySelectorAll('.section, .hero');
@@ -136,8 +109,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }, {
-    threshold: 0.3,
-    rootMargin: '-80px 0px -50% 0px'
+    threshold: 0.1,
+    rootMargin: '-80px 0px -30% 0px'
   });
 
   sections.forEach(section => sectionObserver.observe(section));
@@ -170,6 +143,21 @@ document.addEventListener('DOMContentLoaded', () => {
       const target = document.querySelector(this.getAttribute('href'));
       if (target) {
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // --- Skills Accordion ---
+  const skillItems = document.querySelectorAll('.skill-item');
+
+  skillItems.forEach(item => {
+    item.querySelector('.skill-header').addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      // Close all items
+      skillItems.forEach(i => i.classList.remove('open'));
+      // Toggle clicked item
+      if (!isOpen) {
+        item.classList.add('open');
       }
     });
   });
