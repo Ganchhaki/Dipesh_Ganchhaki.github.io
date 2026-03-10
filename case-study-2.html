@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Study — Evaluating Intrusive UI: Measuring Ad Irritation & User Frustration</title>
+  <meta name="description" content="A mixed-methods survey study quantifying ad irritation drivers among 59 online video viewers, proposing a Differential Pricing Mechanism to balance monetization and UX." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .case-study-hero {
+      min-height: 60vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 120px 0 60px;
+      position: relative;
+    }
+
+    .case-study-hero .hero-bg-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(66,133,244,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(66,133,244,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, black 30%, transparent 70%);
+      -webkit-mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, black 30%, transparent 70%);
+    }
+
+    .case-study-header { position: relative; z-index: 1; }
+
+    .case-study-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+
+    .case-study-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .case-study-meta {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      max-width: 680px;
+      line-height: 1.7;
+    }
+
+    .case-study-body { padding: var(--section-padding) 0; }
+    .case-study-body .container { max-width: 820px; }
+
+    .cs-section { margin-bottom: 64px; }
+
+    .cs-section-number {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent-1);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 12px;
+    }
+
+    .cs-section-title {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .cs-section p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    .cs-section strong { color: var(--text-primary); }
+
+    .cs-highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin: 28px 0;
+    }
+
+    .cs-highlight-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      transition: var(--transition);
+    }
+
+    .cs-highlight-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+
+    .cs-highlight-card h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text-primary);
+    }
+
+    .cs-highlight-card .cs-data {
+      font-size: 0.85rem;
+      color: var(--accent-2);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .cs-highlight-card p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+
+    .cs-method-list { display: flex; flex-direction: column; gap: 12px; margin: 20px 0; }
+
+    .cs-method-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      display: flex;
+      gap: 12px;
+      align-items: baseline;
+    }
+
+    .cs-method-item .method-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent-1);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      flex-shrink: 0;
+      min-width: 90px;
+    }
+
+    .cs-method-item p { font-size: 0.88rem; color: var(--text-secondary); margin: 0; }
+
+    .cs-solution-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      margin-bottom: 20px;
+      transition: var(--transition);
+    }
+
+    .cs-solution-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+
+    .cs-solution-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 10px; }
+
+    .cs-solution-card .cs-action {
+      font-size: 0.88rem;
+      color: var(--text-primary);
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .cs-solution-card .cs-why {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 0;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent-1);
+      margin-bottom: 32px;
+      transition: var(--transition);
+    }
+
+    .back-link:hover { gap: 12px; }
+
+    @media (max-width: 768px) {
+      .case-study-hero { min-height: 50vh; padding: 100px 0 40px; }
+      .cs-highlight-grid { grid-template-columns: 1fr; }
+      .cs-method-item { flex-direction: column; gap: 4px; }
+    }
+
+    /* --- Data Visualization Styles --- */
+    .cs-chart-container {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      margin: 28px 0;
+    }
+
+    .cs-chart-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+    }
+
+    .cs-bar-chart { display: flex; flex-direction: column; gap: 14px; }
+
+    .cs-bar-row { display: flex; align-items: center; gap: 12px; }
+
+    .cs-bar-label {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      min-width: 120px;
+      flex-shrink: 0;
+      text-align: right;
+    }
+
+    .cs-bar-track {
+      flex: 1;
+      height: 28px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .cs-bar-fill {
+      height: 100%;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 10px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #fff;
+      transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .cs-bar-fill.gradient-red { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+    .cs-bar-fill.gradient-orange { background: linear-gradient(135deg, #f39c12, #e67e22); }
+    .cs-bar-fill.gradient-blue { background: linear-gradient(135deg, var(--accent-1), #5f9ea0); }
+    .cs-bar-fill.gradient-green { background: linear-gradient(135deg, var(--accent-2), #2ecc71); }
+
+    .cs-ring-stats { display: flex; gap: 32px; align-items: center; flex-wrap: wrap; justify-content: center; }
+
+    .cs-ring-stat { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+
+    .cs-ring-svg { transform: rotate(-90deg); }
+
+    .cs-ring-bg { fill: none; stroke: rgba(255,255,255,0.06); }
+
+    .cs-ring-fill { fill: none; stroke-linecap: round; transition: stroke-dashoffset 1.5s cubic-bezier(0.4, 0, 0.2, 1); }
+
+    .cs-ring-value {
+      font-size: 1.4rem;
+      font-weight: 800;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .cs-ring-label { font-size: 0.75rem; color: var(--text-muted); text-align: center; max-width: 100px; }
+
+    .cs-scale-reference {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      padding-top: 8px;
+      border-top: 1px solid var(--border-color);
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- Navigation -->
+  <nav class="nav scrolled" id="nav">
+    <div class="nav-inner">
+      <a href="index.html#hero" class="nav-logo visible" id="navLogo">Dipesh Ganchhaki</a>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html#about" class="nav-link">About</a>
+        <a href="index.html#skills" class="nav-link">Skills</a>
+        <a href="index.html#projects" class="nav-link active">Projects</a>
+        <a href="index.html#contact" class="nav-link" data-highlight>Contact</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Case Study Hero -->
+  <section class="case-study-hero">
+    <div class="hero-bg-grid"></div>
+    <div class="container">
+      <div class="case-study-header">
+        <a href="index.html#projects" class="back-link">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Back to Projects
+        </a>
+        <div class="case-study-tags">
+          <span class="tag">Quantitative Analysis</span>
+          <span class="tag">Survey Design</span>
+          <span class="tag">Behavioral Psychology</span>
+          <span class="tag">Monetization UX</span>
+        </div>
+        <h1 class="case-study-title">
+          <span class="gradient-text">Evaluating Intrusive UI: Measuring Ad Irritation and User Frustration</span>
+        </h1>
+        <p class="case-study-meta">
+          While advertising revenue sustains online video platforms, intrusive ad formats generate high levels of user irritation, 
+          leading to ad avoidance behaviors (skipping, ad-blockers) that threaten platform monetization. This study investigates 
+          the specific drivers of ad annoyance and user coping mechanisms.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Case Study Body -->
+  <div class="case-study-body">
+    <div class="container">
+
+      <!-- Executive Summary -->
+      <div class="cs-section">
+        <span class="cs-section-number">01 — Executive Summary</span>
+        <h2 class="cs-section-title">Executive Summary</h2>
+        <div class="cs-highlight-grid">
+          <div class="cs-highlight-card">
+            <h4>The Problem</h4>
+            <p>Intrusive ad formats generate high user irritation, leading to ad avoidance behaviors (skipping, ad-blockers) that threaten platform monetization models.</p>
+          </div>
+          <div class="cs-highlight-card">
+            <h4>My Role</h4>
+            <p>Designed and executed a mixed-methods survey targeting 59 frequent online video viewers to understand the specific drivers of ad annoyance and user coping mechanisms.</p>
+          </div>
+          <div class="cs-highlight-card">
+            <h4>The Impact</h4>
+            <p>Quantified the highest drivers of frustration (<strong>ad length and mid-roll placement</strong>) and proposed a <strong>"Differential Pricing Mechanism"</strong> balancing platform revenue with user satisfaction.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Research Plan -->
+      <div class="cs-section">
+        <span class="cs-section-number">02 — Research Plan & Methodology</span>
+        <h2 class="cs-section-title">Designing the Study</h2>
+        <p>To capture both measurable irritation levels and nuanced user motivations, I employed a <strong>mixed-methods funnel-survey design</strong>.</p>
+        <p><strong>The Sample:</strong> 59 frequent users of online video platforms, with a strong skew toward YouTube (88.1% of respondents).</p>
+        <p><strong>Survey Architecture (Funnel Approach):</strong> To minimize bias, the survey progressed from general viewing habits to specific ad-format experiences, ending with direct questions on annoyance levels and coping strategies.</p>
+
+        <h3 style="font-size: 1.1rem; font-weight: 700; margin: 28px 0 16px;">Mixed-Methods Toolkit</h3>
+        <div class="cs-method-list">
+          <div class="cs-method-item">
+            <span class="method-label">Quantitative</span>
+            <p>Used descriptive statistics (Mean, Median, Mode, Standard Deviation) to analyze <strong>1–10 Likert-scale responses</strong> regarding ad length, frequency, relevance, and quality.</p>
+          </div>
+          <div class="cs-method-item">
+            <span class="method-label">Qualitative</span>
+            <p>Employed <strong>thematic coding</strong> on open-ended responses to extract motivations for voluntary ad engagement versus active avoidance.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Findings -->
+      <div class="cs-section">
+        <span class="cs-section-number">03 — Data Analysis & Key Findings</span>
+        <h2 class="cs-section-title">What the Data Revealed</h2>
+        <p>By analyzing the survey data, I identified a clear consensus on what drives user frustration and how users cope with intrusive UI:</p>
+
+        <div class="cs-highlight-grid">
+          <div class="cs-highlight-card">
+            <h4>Finding 1: Length & Placement Drive Maximum Frustration</h4>
+            <p class="cs-data">Mean annoyance: 9.02/10 · 66.7% gave max score · 44.4% rated mid-roll most irritating</p>
+            <p>Extended and poorly timed interruptions severely disrupt the user's cognitive flow, leading to immediate frustration.</p>
+          </div>
+          <div class="cs-highlight-card">
+            <h4>Finding 2: Quality & Relevance Matter</h4>
+            <p class="cs-data">Poor-quality ads: Mean 8.76 · Irrelevant ads: Mean 7.81</p>
+            <p>Even brief ads fail if they lack contextual relevance or production value, highlighting the need for personalized and high-quality content.</p>
+          </div>
+          <div class="cs-highlight-card">
+            <h4>Finding 3: The "Tolerability" Threshold</h4>
+            <p class="cs-data">Qualitative thematic coding insight</p>
+            <p>Users will voluntarily watch ads if they feature creative storytelling, humor, relevant products, or renowned brands.</p>
+          </div>
+          <div class="cs-highlight-card">
+            <h4>Finding 4: Active Coping Mechanisms</h4>
+            <p class="cs-data">High irritation → skipping, ad-blockers, premium subscriptions</p>
+            <p>Intrusive ads don't just reduce ad effectiveness; they drive users to third-party avoidance tools, posing a risk to the platform's core business model.</p>
+          </div>
+        </div>
+
+        <!-- Data Visualizations -->
+        <div class="cs-chart-container">
+          <div class="cs-chart-title">Mean Annoyance Rating by Ad Attribute (1–10 Likert Scale)</div>
+          <div class="cs-bar-chart">
+            <div class="cs-bar-row">
+              <span class="cs-bar-label">Ad Length</span>
+              <div class="cs-bar-track"><div class="cs-bar-fill gradient-red" style="width: 90.2%">9.02</div></div>
+            </div>
+            <div class="cs-bar-row">
+              <span class="cs-bar-label">Poor Quality</span>
+              <div class="cs-bar-track"><div class="cs-bar-fill gradient-orange" style="width: 87.6%">8.76</div></div>
+            </div>
+            <div class="cs-bar-row">
+              <span class="cs-bar-label">Irrelevance</span>
+              <div class="cs-bar-track"><div class="cs-bar-fill gradient-orange" style="width: 78.1%">7.81</div></div>
+            </div>
+            <div class="cs-bar-row">
+              <span class="cs-bar-label">High Frequency</span>
+              <div class="cs-bar-track"><div class="cs-bar-fill gradient-blue" style="width: 72%">~7.2</div></div>
+            </div>
+          </div>
+          <div class="cs-scale-reference">
+            <span>1 — Not annoying</span>
+            <span>10 — Extremely annoying</span>
+          </div>
+        </div>
+
+        <div class="cs-chart-container">
+          <div class="cs-chart-title">Key Study Metrics</div>
+          <div class="cs-ring-stats">
+            <div class="cs-ring-stat">
+              <svg class="cs-ring-svg" width="100" height="100" viewBox="0 0 100 100">
+                <circle class="cs-ring-bg" cx="50" cy="50" r="40" stroke-width="8"/>
+                <circle class="cs-ring-fill" cx="50" cy="50" r="40" stroke-width="8" stroke="url(#grad-a1)" stroke-dasharray="251.2" stroke-dashoffset="83.6"/>
+                <defs><linearGradient id="grad-a1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#e74c3c"/><stop offset="100%" stop-color="#c0392b"/></linearGradient></defs>
+              </svg>
+              <span class="cs-ring-value">66.7%</span>
+              <span class="cs-ring-label">Gave max score for long ads</span>
+            </div>
+            <div class="cs-ring-stat">
+              <svg class="cs-ring-svg" width="100" height="100" viewBox="0 0 100 100">
+                <circle class="cs-ring-bg" cx="50" cy="50" r="40" stroke-width="8"/>
+                <circle class="cs-ring-fill" cx="50" cy="50" r="40" stroke-width="8" stroke="url(#grad-a2)" stroke-dasharray="251.2" stroke-dashoffset="29.9"/>
+                <defs><linearGradient id="grad-a2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#4285f4"/><stop offset="100%" stop-color="#34a853"/></linearGradient></defs>
+              </svg>
+              <span class="cs-ring-value">88.1%</span>
+              <span class="cs-ring-label">Use YouTube as primary platform</span>
+            </div>
+            <div class="cs-ring-stat">
+              <svg class="cs-ring-svg" width="100" height="100" viewBox="0 0 100 100">
+                <circle class="cs-ring-bg" cx="50" cy="50" r="40" stroke-width="8"/>
+                <circle class="cs-ring-fill" cx="50" cy="50" r="40" stroke-width="8" stroke="url(#grad-a3)" stroke-dasharray="251.2" stroke-dashoffset="139.5"/>
+                <defs><linearGradient id="grad-a3" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#f39c12"/><stop offset="100%" stop-color="#e67e22"/></linearGradient></defs>
+              </svg>
+              <span class="cs-ring-value">44.4%</span>
+              <span class="cs-ring-label">Rated mid-roll most irritating</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Solutions -->
+      <div class="cs-section">
+        <span class="cs-section-number">04 — Proposed Data-Driven Solutions</span>
+        <h2 class="cs-section-title">Strategic Recommendations</h2>
+
+        <div class="cs-solution-card">
+          <h4>Solution 1: Strategic Placement & Optimization</h4>
+          <p class="cs-action">Avoid excessive mid-roll interruptions in favor of pre-roll or end-of-video placements. Enforce concise ad lengths to minimize disruption.</p>
+        </div>
+
+        <div class="cs-solution-card">
+          <h4>Solution 2: The "Differential Pricing Mechanism"</h4>
+          <p class="cs-action">Implement a pricing model where the cost of displaying an ad fluctuates based on its quality, genre relevance, and length. High-quality, concise ads cost less to place, incentivizing advertisers to create better content. Poor-quality or oversaturated ads cost more, compensating the platform for the negative impact on user retention.</p>
+          <p class="cs-why">This creates a win-win: better UX for viewers, better conversion for advertisers, and sustained revenue for the platform.</p>
+        </div>
+      </div>
+
+      <!-- Back to projects -->
+      <a href="index.html#projects" class="btn btn-ghost" style="margin-top: 20px;">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back to All Projects
+      </a>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <p class="footer-copy">&copy; 2026 — Designed &amp; built with purpose.</p>
+        <div class="footer-links">
+          <a href="https://www.linkedin.com/in/dipesh-ganchhaki" target="_blank" aria-label="LinkedIn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" stroke="currentColor" stroke-width="1.5"/><rect x="2" y="9" width="4" height="12" stroke="currentColor" stroke-width="1.5"/><circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="1.5"/></svg>
+          </a>
+          <a href="https://instagram.com/yourhandle" target="_blank" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
+          </a>
+          <a href="mailto:gdipesh540@gmail.com" aria-label="Email">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.5"/><polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="1.5"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
