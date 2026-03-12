@@ -57,6 +57,18 @@
       line-height: 1.7;
     }
 
+    .case-study-meta a {
+      color: var(--accent-1);
+      font-weight: 500;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    .case-study-meta a:hover {
+      color: var(--accent-2);
+    }
+
     .case-study-body {
       padding: var(--section-padding) 0;
     }
@@ -233,6 +245,27 @@
       }
     }
 
+    @media (max-width: 640px) {
+      .case-study-title {
+        font-size: 1.9rem;
+      }
+      .case-study-meta {
+        font-size: 0.9rem;
+      }
+      .case-study-body {
+        padding: 60px 0;
+      }
+      .cs-section {
+        margin-bottom: 52px;
+      }
+      .cs-chart-img {
+        margin: 16px 0;
+      }
+      .cs-protocol {
+        padding: 20px 18px;
+      }
+    }
+
     .cs-image {
       margin: 24px 0;
       border-radius: var(--radius-md);
@@ -258,6 +291,147 @@
       border-radius: var(--radius-md);
       margin-top: 28px;
       border: 1px solid var(--border-color);
+    }
+
+    /* --- Methodology protocol visual --- */
+    .cs-protocol {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+      margin: 22px 0 10px;
+      overflow: visible;
+    }
+
+    .cs-protocol-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .cs-protocol-objective {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin-bottom: 18px;
+      max-width: 900px;
+    }
+
+    .cs-protocol-objective strong {
+      color: var(--text-primary);
+    }
+
+    .cs-protocol-rail {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 10px 0;
+      max-width: 100%;
+    }
+
+    .cs-protocol-arrow {
+      flex: 0 0 20px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 6px;
+      opacity: 0.9;
+    }
+
+    .cs-protocol-arrow svg {
+      width: 20px;
+      height: 14px;
+    }
+
+    .cs-protocol-arrow path {
+      stroke: rgba(52,168,83,0.75);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .cs-protocol-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      text-align: center;
+      position: relative;
+      padding-top: 6px;
+      flex: 0 1 clamp(110px, 14vw, 140px);
+      min-width: 110px;
+    }
+
+    .cs-protocol-badge {
+      width: 64px;
+      height: 64px;
+      border-radius: 999px;
+      background: rgba(10,10,15,0.35);
+      border: 2px solid rgba(52,168,83,0.75);
+      display: grid;
+      place-items: center;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 0 0 6px rgba(52,168,83,0.06);
+    }
+
+    .cs-protocol-badge svg {
+      width: 26px;
+      height: 26px;
+      color: var(--text-primary);
+      opacity: 0.92;
+    }
+
+    .cs-protocol-label {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.95rem;
+      line-height: 1.15;
+      max-width: 140px;
+    }
+
+    .cs-protocol-sublabel {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      line-height: 1.35;
+      max-width: 160px;
+    }
+
+    .cs-protocol-footnote {
+      margin-top: 16px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 980px) {
+      .cs-protocol-rail {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 18px 14px;
+      }
+      .cs-protocol-step { flex: 0 1 220px; }
+      .cs-protocol-arrow { display: none; }
+    }
+
+    @media (max-width: 520px) {
+      .cs-protocol-rail {
+        gap: 14px;
+      }
+      .cs-protocol-step { flex-basis: 100%; }
+    }
+
+    /* --- R-generated chart images (match Case Study 2) --- */
+    .cs-chart-img {
+      width: 100%;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      margin: 22px 0;
+      display: block;
+      background: #0f0f17;
     }
 
     /* --- Data Visualization Styles --- */
@@ -474,6 +648,14 @@
           Initial heuristic reviews indicated that the game's spatial UI clustering and opaque virtual physics were causing 
           severe usability friction and cybersickness among novice players.
         </p>
+        <p class="case-study-meta" style="margin-top: 8px;">
+          You can explore the official game overview and introductory trailer on the
+          <a href="https://www.meta.com/en-gb/experiences/aim-xr/4245506092131005/" target="_blank" rel="noopener noreferrer">AimXR page on Meta Quest</a>.
+        </p>
+        <p class="case-study-meta" style="margin-top: 6px;">
+          If you want the full research write‑up and artifacts, you can read the detailed project report
+          <a href="https://docs.google.com/document/d/1e8_ooBrpXoOCHi-IvdeaojRbsynUcbp2lEN6q9RVRtY/edit?usp=sharing" target="_blank" rel="noopener noreferrer">here (Google Doc)</a>.
+        </p>
         <img src="assets/AIMXRLogo.jpg" alt="AimXR Logo" class="cs-hero-logo" />
       </div>
     </div>
@@ -494,7 +676,7 @@
           </div>
           <div class="cs-highlight-card">
             <h4>My Role</h4>
-            <p>Conducted a rigorous mixed-methods usability study to measure spatial UI learnability, interaction efficiency, and physical comfort degradation.</p>
+            <p>Worked in a <strong>team of two</strong>. I moderated usability testing for <strong>half the participants (n = 4)</strong> and took <strong>sole ownership</strong> of data synthesis: video session analysis, thematic coding, and descriptive statistical analysis.</p>
           </div>
           <div class="cs-highlight-card">
             <h4>The Impact</h4>
@@ -507,9 +689,116 @@
       <div class="cs-section">
         <span class="cs-section-number">02 — Research Plan & Methodology</span>
         <h2 class="cs-section-title">Designing the Study</h2>
-        <p>To expose fundamental flaws in learnability, I designed a strict control protocol testing <strong>8 VR Novices</strong>.</p>
-        <p><strong>The Persona: "The VR Novice"</strong> — Users who prioritize realism but are highly susceptible to spatial disorientation, oculomotor strain, and cognitive overload when physical/virtual mechanics misalign.</p>
-        <p><strong>The Protocol:</strong> A 20-minute repeated-measures session divided into two phases (Tutorial/Combat and Advanced Actions) to baseline learnability and track compounding physical strain. I used a strict isolation protocol to prevent feedback contamination.</p>
+        <div class="cs-highlight-grid">
+          <div class="cs-highlight-card">
+            <h4>Participants</h4>
+            <p class="cs-data">n = 8</p>
+            <p>VR novices completing a controlled onboarding → advanced-actions flow.</p>
+          </div>
+          <div class="cs-highlight-card">
+            <h4>Protocol</h4>
+            <p class="cs-data">20 min session</p>
+            <p>Repeated-measures: Tutorial/Combat baseline → Advanced Actions to observe compounding strain.</p>
+          </div>
+          <div class="cs-highlight-card">
+            <h4>Measures</h4>
+            <p class="cs-data">GEQ + VRSQ</p>
+            <p>Competence/Immersion + oculomotor strain/disorientation, triangulated with observation + post-task responses.</p>
+          </div>
+        </div>
+
+        <div class="cs-protocol" aria-label="Moderated usability testing protocol">
+          <div class="cs-protocol-title">Moderated Usability Testing Protocol</div>
+          <div class="cs-protocol-objective">
+            <strong>Objective:</strong> Measure learnability, interaction efficiency, and physical comfort across a divided 20‑minute gameplay session.
+          </div>
+
+          <div class="cs-protocol-rail">
+            <div class="cs-protocol-step">
+              <div class="cs-protocol-badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M12 8v4l3 3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Z" stroke="currentColor" stroke-width="1.7"/>
+                </svg>
+              </div>
+              <div class="cs-protocol-label">Pre‑Test<br/>Setup</div>
+              <div class="cs-protocol-sublabel">Baseline comfort + expectations</div>
+            </div>
+
+            <div class="cs-protocol-arrow" aria-hidden="true">
+              <svg viewBox="0 0 48 16" fill="none">
+                <path d="M2 8H38M38 8L32 3M38 8L32 13" />
+              </svg>
+            </div>
+
+            <div class="cs-protocol-step">
+              <div class="cs-protocol-badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4Z" stroke="currentColor" stroke-width="1.7"/>
+                  <path d="M4 22c1.5-4 6-6 8-6s6.5 2 8 6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="cs-protocol-label">Session A<br/>Onboarding</div>
+              <div class="cs-protocol-sublabel">Tutorial + first combat tasks</div>
+            </div>
+
+            <div class="cs-protocol-arrow" aria-hidden="true">
+              <svg viewBox="0 0 48 16" fill="none">
+                <path d="M2 8H38M38 8L32 3M38 8L32 13" />
+              </svg>
+            </div>
+
+            <div class="cs-protocol-step">
+              <div class="cs-protocol-badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M9 11h6M9 15h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                  <path d="M7 3h10a2 2 0 0 1 2 2v16l-3-2-3 2-3-2-3 2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="cs-protocol-label">Mid‑Test<br/>Evaluation</div>
+              <div class="cs-protocol-sublabel">GEQ + VRSQ checkpoint</div>
+            </div>
+
+            <div class="cs-protocol-arrow" aria-hidden="true">
+              <svg viewBox="0 0 48 16" fill="none">
+                <path d="M2 8H38M38 8L32 3M38 8L32 13" />
+              </svg>
+            </div>
+
+            <div class="cs-protocol-step">
+              <div class="cs-protocol-badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M8 15V9M12 17V7M16 14V10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                  <path d="M4 20h16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="cs-protocol-label">Session B<br/>Advanced</div>
+              <div class="cs-protocol-sublabel">Complex actions under load</div>
+            </div>
+
+            <div class="cs-protocol-arrow" aria-hidden="true">
+              <svg viewBox="0 0 48 16" fill="none">
+                <path d="M2 8H38M38 8L32 3M38 8L32 13" />
+              </svg>
+            </div>
+
+            <div class="cs-protocol-step">
+              <div class="cs-protocol-badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M4 19V5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                  <path d="M4 19h16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                  <path d="M8 15l3-4 3 2 4-6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="cs-protocol-label">Post‑Test<br/>Evaluation</div>
+              <div class="cs-protocol-sublabel">GEQ + VRSQ + Post‑Task Questionnaire</div>
+            </div>
+          </div>
+
+          <div class="cs-protocol-footnote">
+            The protocol alternates between active VR gameplay and structured evaluation checkpoints to capture both performance breakdowns and compounding discomfort.
+          </div>
+        </div>
         
         <h3 style="font-size: 1.1rem; font-weight: 700; margin: 28px 0 16px;">Mixed-Methods Toolkit</h3>
         <div class="cs-method-list">
@@ -528,104 +817,35 @@
       <div class="cs-section">
         <span class="cs-section-number">03 — Data Analysis & Key Findings</span>
         <h2 class="cs-section-title">What the Data Revealed</h2>
-        <p>By triangulating physiological deltas from the GEQ/VRSQ with thematic video analysis, I mapped systemic user struggles to four core usability failures:</p>
+        <p>Triangulating GEQ/VRSQ deltas with observational themes revealed four system-level usability failures:</p>
 
         <div class="cs-highlight-grid">
           <div class="cs-highlight-card">
             <h4>Finding 1: Fitts's Law Violations</h4>
             <p class="cs-data">37.5% of participants (3/8) reported clutter & mis-grabs</p>
-            <p>Overlapping hitboxes on the inventory belt caused degraded proprioceptive accuracy under stress, resulting in frequent "Near Misses" that interrupted combat flow.</p>
+            <p>Overlapping belt hitboxes caused frequent mis-grabs that broke flow.</p>
           </div>
           <div class="cs-highlight-card">
             <h4>Finding 2: Mental Model Collapse</h4>
             <p class="cs-data">Task abandonment observed (Participant 8)</p>
-            <p>Inconsistent throwable interactions — grenades vs. bimanual Molotovs vs. flashbangs lacking "bite-to-pull" affordance — fractured users' mental models and led to task abandonment.</p>
+            <p>Inconsistent throwable interactions fractured expectations and drove abandonment.</p>
           </div>
           <div class="cs-highlight-card">
             <h4>Finding 3: Physics Opacity</h4>
             <p class="cs-data">Immersion delta: −0.83 (Participant 7)</p>
-            <p>Without physical weight feedback in controllers, users couldn't judge the virtual drag coefficient, leading to repeated release timing failures despite aiming correctly.</p>
+            <p>Opaque virtual physics made “correct” throws feel unpredictable.</p>
           </div>
           <div class="cs-highlight-card">
             <h4>Finding 4: Vestibular Mismatch</h4>
             <p class="cs-data">83.33% initial Oculomotor strain (Participant 8)</p>
-            <p>The standard FOV vignette failed during dynamic turning/strafing. Participant 3's oculomotor strain doubled to 41.66% during advanced actions, causing "phantom falling" sensations.</p>
+            <p>Comfort vignette didn’t protect users during dynamic motion (e.g., turning/strafing).</p>
           </div>
         </div>
 
-        <!-- Data Visualizations -->
-        <div class="cs-chart-container">
-          <div class="cs-chart-title">VRSQ: Oculomotor Strain by Participant</div>
-          <div class="cs-bar-chart">
-            <div class="cs-bar-row">
-              <span class="cs-bar-label">P8 (Initial)</span>
-              <div class="cs-bar-track"><div class="cs-bar-fill gradient-red" style="width: 83.33%">83.3%</div></div>
-            </div>
-            <div class="cs-bar-row">
-              <span class="cs-bar-label">P3 (Advanced)</span>
-              <div class="cs-bar-track"><div class="cs-bar-fill gradient-orange" style="width: 41.66%">41.7%</div></div>
-            </div>
-            <div class="cs-bar-row">
-              <span class="cs-bar-label">P3 (Initial)</span>
-              <div class="cs-bar-track"><div class="cs-bar-fill gradient-blue" style="width: 20.83%">20.8%</div></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="cs-chart-container">
-          <div class="cs-chart-title">Key Metrics at a Glance</div>
-          <div class="cs-ring-stats">
-            <div class="cs-ring-stat">
-              <svg class="cs-ring-svg" width="100" height="100" viewBox="0 0 100 100">
-                <circle class="cs-ring-bg" cx="50" cy="50" r="40" stroke-width="8"/>
-                <circle class="cs-ring-fill" cx="50" cy="50" r="40" stroke-width="8" stroke="url(#grad1)" stroke-dasharray="251.2" stroke-dashoffset="157"/>
-                <defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#4285f4"/><stop offset="100%" stop-color="#e74c3c"/></linearGradient></defs>
-              </svg>
-              <span class="cs-ring-value">37.5%</span>
-              <span class="cs-ring-label">Reported UI clutter & mis-grabs</span>
-            </div>
-            <div class="cs-ring-stat">
-              <svg class="cs-ring-svg" width="100" height="100" viewBox="0 0 100 100">
-                <circle class="cs-ring-bg" cx="50" cy="50" r="40" stroke-width="8"/>
-                <circle class="cs-ring-fill" cx="50" cy="50" r="40" stroke-width="8" stroke="url(#grad2)" stroke-dasharray="251.2" stroke-dashoffset="42"/>
-                <defs><linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#e74c3c"/><stop offset="100%" stop-color="#c0392b"/></linearGradient></defs>
-              </svg>
-              <span class="cs-ring-value">83.3%</span>
-              <span class="cs-ring-label">Peak oculomotor strain</span>
-            </div>
-            <div class="cs-ring-stat">
-              <svg class="cs-ring-svg" width="100" height="100" viewBox="0 0 100 100">
-                <circle class="cs-ring-bg" cx="50" cy="50" r="40" stroke-width="8"/>
-                <circle class="cs-ring-fill" cx="50" cy="50" r="40" stroke-width="8" stroke="url(#grad3)" stroke-dasharray="251.2" stroke-dashoffset="125.6"/>
-                <defs><linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#f39c12"/><stop offset="100%" stop-color="#e67e22"/></linearGradient></defs>
-              </svg>
-              <span class="cs-ring-value">2×</span>
-              <span class="cs-ring-label">P3 strain increase (advanced)</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="cs-chart-container">
-          <div class="cs-chart-title">GEQ: Immersion Score Deltas (Before → After)</div>
-          <div class="cs-delta-grid">
-            <div class="cs-delta-item">
-              <div class="cs-delta-value negative">−0.83</div>
-              <div class="cs-delta-sublabel">Participant 7<br/>Immersion</div>
-            </div>
-            <div class="cs-delta-item">
-              <div class="cs-delta-value warning">−0.50</div>
-              <div class="cs-delta-sublabel">Avg. across<br/>participants</div>
-            </div>
-            <div class="cs-delta-item">
-              <div class="cs-delta-value negative">1/8</div>
-              <div class="cs-delta-sublabel">Task<br/>abandonments</div>
-            </div>
-            <div class="cs-delta-item">
-              <div class="cs-delta-value positive">4</div>
-              <div class="cs-delta-sublabel">Critical heuristic<br/>failures found</div>
-            </div>
-          </div>
-        </div>
+        <!-- Data Visualizations (R-generated, image-first like Case Study 2) -->
+        <img src="assets/vr_chart_oculomotor_strain.png" alt="VRSQ oculomotor strain highlights — chart generated with R ggplot2" class="cs-chart-img" />
+        <img src="assets/vr_chart_key_metrics.png" alt="Key VR study metrics — chart generated with R ggplot2" class="cs-chart-img" />
+        <img src="assets/vr_chart_immersion_deltas.png" alt="GEQ immersion deltas — chart generated with R ggplot2" class="cs-chart-img" />
       </div>
 
       <!-- Solutions -->
@@ -661,6 +881,22 @@
           <h4>Solution 4: Omni-Directional Vignetting</h4>
           <p class="cs-action">Decouple the comfort vignette from strictly forward movement. Trigger FOV restriction during any artificial translation or rotation (strafing, falling, snap-turning).</p>
           <p class="cs-why">Scaling opacity based on camera speed protects the user's vestibular system and mitigates "phantom falling".</p>
+        </div>
+      </div>
+
+      <!-- Limitations -->
+      <div class="cs-section">
+        <span class="cs-section-number">05 — Limitations &amp; Future Research</span>
+        <h2 class="cs-section-title">Limitations &amp; Future Research</h2>
+        <div class="cs-highlight-grid">
+          <div class="cs-highlight-card">
+            <h4>Sample Size Constraints</h4>
+            <p>Testing was limited to <strong>8 VR novices</strong> in a highly controlled, isolated environment. Real‑world physical fatigue over longer sessions was not measured.</p>
+          </div>
+          <div class="cs-highlight-card">
+            <h4>Next Steps</h4>
+            <p><strong>Gaze‑Assisted Hitbox</strong> and <strong>Omni‑Directional Vignetting</strong> are data‑driven theories. Next, prototype them and run A/B tests against the original UI to mathematically validate error reduction.</p>
+          </div>
         </div>
       </div>
 

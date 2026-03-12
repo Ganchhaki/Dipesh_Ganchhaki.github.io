@@ -190,3 +190,133 @@ ggsave("assets/chart_coping.png", p4,
 
 cat("\u2713 Chart 4 saved: assets/chart_coping.png\n")
 cat("\n\u2713 All 4 charts generated successfully!\n")
+
+# ============================================================
+# Case Study 1 — Publication-Quality Charts (ggplot2)
+# Improving Learnability & Mitigating Cybersickness in Tactical VR
+# ============================================================
+
+# ============================================================
+# Chart 5: VRSQ Oculomotor Strain — Highlight Participants
+# ============================================================
+
+vr_strain <- data.frame(
+  Condition = factor(
+    c("P8 (Initial)", "P3 (Advanced)", "P3 (Initial)"),
+    levels = c("P3 (Initial)", "P3 (Advanced)", "P8 (Initial)")
+  ),
+  Percent = c(83.33, 41.66, 20.83)
+)
+
+p5 <- ggplot(vr_strain, aes(x = Condition, y = Percent, fill = Percent)) +
+  geom_col(width = 0.65, show.legend = FALSE) +
+  geom_text(aes(label = paste0(sprintf("%.1f", Percent), "%")),
+            hjust = -0.12, color = "#f0f0f5", fontface = "bold", size = 5) +
+  scale_fill_gradient(low = "#4285f4", high = "#e74c3c") +
+  scale_y_continuous(limits = c(0, 100), breaks = seq(0, 100, 20),
+                     labels = function(x) paste0(x, "%"),
+                     expand = expansion(mult = c(0, 0.08))) +
+  coord_flip() +
+  labs(
+    title = "VRSQ Oculomotor Strain — Highlight Participants",
+    subtitle = "Notable strain points observed during the study  |  n = 8 VR novices",
+    x = NULL,
+    y = "% Oculomotor Strain"
+  ) +
+  theme_portfolio() +
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.grid.major.x = element_line(color = "#1a1a2e", linewidth = 0.3)
+  )
+
+ggsave("assets/vr_chart_oculomotor_strain.png", p5,
+       width = 10, height = 5, dpi = 300, bg = "#0f0f17")
+
+cat("\u2713 Chart 5 saved: assets/vr_chart_oculomotor_strain.png\n")
+
+# ============================================================
+# Chart 6: Key Study Metrics (VR)
+# ============================================================
+
+vr_metrics <- data.frame(
+  Metric = factor(
+    c("Peak oculomotor\nstrain observed",
+      "Reported UI clutter\n& mis-grabs",
+      "Task abandonment\nobserved"),
+    levels = c("Task abandonment\nobserved",
+               "Reported UI clutter\n& mis-grabs",
+               "Peak oculomotor\nstrain observed")
+  ),
+  Value = c(83.33, 37.5, 12.5)
+)
+
+p6 <- ggplot(vr_metrics, aes(x = Metric, y = Value)) +
+  geom_segment(aes(xend = Metric, y = 0, yend = Value),
+               color = "#4285f4", linewidth = 2) +
+  geom_point(size = 10, color = "#4285f4") +
+  geom_point(size = 7, color = "#34a853") +
+  geom_text(aes(label = paste0(sprintf("%.1f", Value), "%")),
+            color = "#fff", fontface = "bold", size = 3.5) +
+  scale_y_continuous(limits = c(0, 100), breaks = seq(0, 100, 25),
+                     labels = function(x) paste0(x, "%")) +
+  coord_flip() +
+  labs(
+    title = "Key Study Metrics (VR)",
+    subtitle = "High-signal outcomes at a glance  |  n = 8 VR novices",
+    x = NULL,
+    y = NULL
+  ) +
+  theme_portfolio() +
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.grid.major.x = element_line(color = "#1a1a2e", linewidth = 0.3)
+  )
+
+ggsave("assets/vr_chart_key_metrics.png", p6,
+       width = 10, height = 4.8, dpi = 300, bg = "#0f0f17")
+
+cat("\u2713 Chart 6 saved: assets/vr_chart_key_metrics.png\n")
+
+# ============================================================
+# Chart 7: GEQ Immersion Deltas (Before → After)
+# ============================================================
+
+vr_deltas <- data.frame(
+  Group = factor(
+    c("Participant 7", "Study average"),
+    levels = c("Study average", "Participant 7")
+  ),
+  Delta = c(-0.83, -0.50)
+)
+
+p7 <- ggplot(vr_deltas, aes(x = Group, y = Delta, fill = Delta)) +
+  geom_col(width = 0.6, show.legend = FALSE) +
+  geom_hline(yintercept = 0, color = "#1a1a2e", linewidth = 0.6) +
+  geom_text(aes(label = sprintf("%+.2f", Delta)),
+            hjust = ifelse(vr_deltas$Delta < 0, 1.08, -0.08),
+            color = "#f0f0f5", fontface = "bold", size = 5) +
+  scale_fill_gradient2(low = "#e74c3c", mid = "#4285f4", high = "#34a853", midpoint = 0) +
+  scale_y_continuous(
+    limits = c(min(vr_deltas$Delta) - 0.12, 0.05),
+    breaks = seq(-1, 0, 0.2),
+    expand = expansion(mult = c(0.02, 0.02))
+  ) +
+  coord_flip() +
+  labs(
+    title = "GEQ Immersion Deltas (Before → After)",
+    subtitle = "Negative values indicate reduced immersion after repeated actions",
+    x = NULL,
+    y = "Immersion Delta"
+  ) +
+  theme_portfolio() +
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.grid.major.x = element_line(color = "#1a1a2e", linewidth = 0.3)
+  )
+
+ggsave("assets/vr_chart_immersion_deltas.png", p7,
+       width = 10, height = 4.6, dpi = 300, bg = "#0f0f17")
+
+cat("\u2713 Chart 7 saved: assets/vr_chart_immersion_deltas.png\n")
+
+cat("\n\u2713 VR charts appended successfully!\n")

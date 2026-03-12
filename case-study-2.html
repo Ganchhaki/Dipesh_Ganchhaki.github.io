@@ -324,6 +324,24 @@
       .cs-bar-label { min-width: 100px; font-size: 0.8rem; }
       .cs-chart-block { padding: 28px 20px; }
     }
+
+    @media (max-width: 640px) {
+      .case-study-title {
+        font-size: 2rem;
+      }
+      .case-study-meta {
+        font-size: 0.95rem;
+      }
+      .case-study-body {
+        padding: 60px 0;
+      }
+      .cs-section {
+        margin-bottom: 52px;
+      }
+      .cs-chart-img {
+        margin-bottom: 28px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -392,6 +410,20 @@
           A structured funnel approach moved participants from general habits to specific irritation triggers, minimizing response bias.
         </p>
 
+        <!-- My role -->
+        <div class="cs-findings-grid" style="margin: 0 0 32px;">
+          <div class="cs-finding-card">
+            <div class="cs-finding-stat">My Role</div>
+            <h4>Survey Design &amp; Distribution</h4>
+            <p>Co‑designed the survey architecture and managed the distribution link.</p>
+          </div>
+          <div class="cs-finding-card">
+            <div class="cs-finding-stat">Owned</div>
+            <h4>Analysis &amp; Coding</h4>
+            <p>Took full ownership of the subsequent data analysis, leading both quantitative descriptive analysis and qualitative thematic coding.</p>
+          </div>
+        </div>
+
         <!-- Funnel Diagram -->
         <div class="cs-funnel">
           <div class="cs-funnel-step">
@@ -442,14 +474,14 @@
         <!-- Finding cards — stat-first -->
         <div class="cs-findings-grid">
           <div class="cs-finding-card">
+            <div class="cs-finding-stat">⚠</div>
+            <h4>Active Coping Mechanisms</h4>
+            <p>High irritation drives users to ad-blockers — threatening the ad model.</p>
+          </div>
+          <div class="cs-finding-card">
             <div class="cs-finding-stat">9.02</div>
             <h4>Length & Placement Drive Peak Frustration</h4>
             <p>Extended, poorly timed interruptions disrupt cognitive flow and trigger immediate frustration.</p>
-          </div>
-          <div class="cs-finding-card">
-            <div class="cs-finding-stat">8.76</div>
-            <h4>Quality & Relevance Matter</h4>
-            <p>Even brief ads fail if they lack production value or contextual relevance to the viewer.</p>
           </div>
           <div class="cs-finding-card">
             <div class="cs-finding-stat">✓</div>
@@ -457,9 +489,9 @@
             <p>Users voluntarily watch ads with creative storytelling, humor, or relevant products.</p>
           </div>
           <div class="cs-finding-card">
-            <div class="cs-finding-stat">⚠</div>
-            <h4>Active Coping Mechanisms</h4>
-            <p>High irritation drives users to ad-blockers and premium subscriptions — threatening the ad model.</p>
+            <div class="cs-finding-stat">8.76</div>
+            <h4>Quality & Relevance Matter</h4>
+            <p>Even brief ads fail if they lack production value or contextual relevance to the viewer.</p>
           </div>
         </div>
       </div>
@@ -479,6 +511,24 @@
             <div class="cs-sol-number">02</div>
             <h4>Differential Pricing Mechanism</h4>
             <p>High-quality, concise ads cost less to place. Poor-quality ads cost more, incentivizing better content and sustaining user retention.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Limitations -->
+      <div class="cs-section">
+        <span class="cs-section-label">04 — Limitations &amp; Future Research</span>
+        <h2 class="cs-section-title">Limitations &amp; Future Research</h2>
+        <div class="cs-findings-grid" style="margin: 0;">
+          <div class="cs-finding-card">
+            <div class="cs-finding-stat">88.1%</div>
+            <h4>Platform Bias</h4>
+            <p>The sample (n = 59) heavily skewed toward YouTube users (88.1%). These findings may not generalize to swipe‑based platforms like TikTok or Instagram Reels.</p>
+          </div>
+          <div class="cs-finding-card">
+            <div class="cs-finding-stat">Next</div>
+            <h4>Future Validation</h4>
+            <p>Validate these findings across different devices (e.g., Smart TVs vs. mobile) to test how context and screen size shape irritation thresholds.</p>
           </div>
         </div>
       </div>

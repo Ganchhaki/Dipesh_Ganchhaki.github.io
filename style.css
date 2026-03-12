@@ -908,10 +908,26 @@ ul { list-style: none; }
   }
 
   .nav-toggle { display: flex; }
+  
+  .hero {
+    padding: 88px 0 48px;
+  }
 
+  .section {
+    padding: 72px 0;
+  }
 
+  .section-header {
+    margin-bottom: 40px;
+  }
 
+  .about-statement {
+    font-size: 1.7rem;
+  }
 
+  .project-card {
+    flex: 0 0 85vw;
+  }
 
   .footer-inner {
     flex-direction: column;
