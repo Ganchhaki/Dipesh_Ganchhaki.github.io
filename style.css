@@ -425,8 +425,9 @@ ul { list-style: none; }
 .scroll-indicator {
   position: absolute;
   bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  width: 100%;
+  padding-left: 0.15em; /* Compensate for letter-spacing to perfectly center */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -925,8 +926,17 @@ ul { list-style: none; }
     font-size: 1.7rem;
   }
 
+  .projects-grid {
+    flex-direction: column;
+    overflow-x: visible;
+    scroll-snap-type: none;
+    gap: 24px;
+    padding-bottom: 0;
+  }
+
   .project-card {
-    flex: 0 0 85vw;
+    flex: none;
+    width: 100%;
   }
 
   .footer-inner {
