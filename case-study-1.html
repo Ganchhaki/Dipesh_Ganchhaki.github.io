@@ -10,9 +10,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* Case Study Page Overrides */
+    /* Base styles imported from case-study-2 */
     .case-study-hero {
-      min-height: 60vh;
+      min-height: 70vh;
       display: flex;
       align-items: flex-end;
       padding: 120px 0 60px;
@@ -30,10 +30,7 @@
       -webkit-mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, black 30%, transparent 70%);
     }
 
-    .case-study-header {
-      position: relative;
-      z-index: 1;
-    }
+    .case-study-header { position: relative; z-index: 1; }
 
     .case-study-tags {
       display: flex;
@@ -44,17 +41,19 @@
 
     .case-study-title {
       font-family: var(--font-display);
-      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-size: clamp(2.4rem, 5vw, 4rem);
       font-weight: 700;
-      line-height: 1.15;
+      line-height: 1.1;
       margin-bottom: 20px;
+      letter-spacing: -0.02em;
     }
 
     .case-study-meta {
-      font-size: 0.95rem;
+      font-size: 1.1rem;
       color: var(--text-secondary);
-      max-width: 680px;
+      max-width: 700px;
       line-height: 1.7;
+      margin-bottom: 8px;
     }
 
     .case-study-meta a {
@@ -69,205 +68,81 @@
       color: var(--accent-2);
     }
 
-    .case-study-body {
-      padding: var(--section-padding) 0;
-    }
+    .case-study-body { padding: var(--section-padding) 0; }
+    .case-study-body .container { max-width: 1100px; }
 
-    .case-study-body .container {
-      max-width: 820px;
-    }
+    .cs-section { margin-bottom: 100px; }
 
-    .cs-section {
-      margin-bottom: 64px;
-    }
-
-    .cs-section-number {
+    .cs-section-label {
       font-size: 0.75rem;
       font-weight: 600;
       color: var(--accent-1);
       text-transform: uppercase;
       letter-spacing: 0.15em;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
+      display: block;
     }
 
     .cs-section-title {
       font-family: var(--font-display);
-      font-size: 1.6rem;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
       font-weight: 700;
       margin-bottom: 20px;
+      letter-spacing: -0.02em;
     }
 
-    .cs-section p {
-      color: var(--text-secondary);
-      margin-bottom: 16px;
+    .cs-caption {
       font-size: 0.95rem;
-      line-height: 1.8;
-    }
-
-    .cs-section strong {
-      color: var(--text-primary);
-    }
-
-    .cs-highlight-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-      margin: 28px 0;
-    }
-
-    .cs-highlight-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 24px;
-      transition: var(--transition);
-    }
-
-    .cs-highlight-card:hover {
-      border-color: var(--border-hover);
-      transform: translateY(-2px);
-    }
-
-    .cs-highlight-card h4 {
-      font-size: 0.95rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-      color: var(--text-primary);
-    }
-
-    .cs-highlight-card .cs-data {
-      font-size: 0.85rem;
-      color: var(--accent-2);
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    .cs-highlight-card p {
-      font-size: 0.85rem;
       color: var(--text-secondary);
-      line-height: 1.6;
-      margin-bottom: 0;
+      max-width: 640px;
+      line-height: 1.7;
+      margin-bottom: 40px;
     }
 
-    .cs-method-list {
+    /* --- Hero Big Stats --- */
+    .cs-hero-stats {
+      display: flex;
+      gap: 60px;
+      margin-top: 48px;
+      flex-wrap: wrap;
+    }
+
+    .cs-hero-stat {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin: 20px 0;
     }
 
-    .cs-method-item {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-sm);
-      padding: 16px 20px;
-      display: flex;
-      gap: 12px;
-      align-items: baseline;
+    .cs-hero-stat-value {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 800;
+      line-height: 1;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    .cs-method-item .method-label {
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--accent-1);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      flex-shrink: 0;
-      min-width: 90px;
-    }
-
-    .cs-method-item p {
-      font-size: 0.88rem;
-      color: var(--text-secondary);
-      margin: 0;
-    }
-
-    .cs-solution-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 28px;
-      margin-bottom: 20px;
-      transition: var(--transition);
-    }
-
-    .cs-solution-card:hover {
-      border-color: var(--border-hover);
-      transform: translateY(-2px);
-    }
-
-    .cs-solution-card h4 {
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    .cs-solution-card .cs-action {
-      font-size: 0.88rem;
-      color: var(--text-primary);
-      font-weight: 500;
-      margin-bottom: 8px;
-    }
-
-    .cs-solution-card .cs-why {
+    .cs-hero-stat-label {
       font-size: 0.85rem;
       color: var(--text-muted);
-      font-style: italic;
-      margin-bottom: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 8px;
     }
 
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--accent-1);
-      margin-bottom: 32px;
-      transition: var(--transition);
-    }
-
-    .back-link:hover {
-      gap: 12px;
-    }
-
-    @media (max-width: 768px) {
-      .case-study-hero {
-        min-height: 50vh;
-        padding: 100px 0 40px;
-      }
-      .cs-highlight-grid {
-        grid-template-columns: 1fr;
-      }
-      .cs-method-item {
-        flex-direction: column;
-        gap: 4px;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .case-study-title {
-        font-size: 1.9rem;
-      }
-      .case-study-meta {
-        font-size: 0.9rem;
-      }
-      .case-study-body {
-        padding: 60px 0;
-      }
-      .cs-section {
-        margin-bottom: 52px;
-      }
-      .cs-chart-img {
-        margin: 16px 0;
-      }
-      .cs-protocol {
-        padding: 20px 18px;
-      }
+    /* --- R-generated chart images --- */
+    .cs-chart-img {
+      width: 100%;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      margin-bottom: 40px;
+      display: block;
+      background: #0f0f17;
     }
 
     .cs-image {
-      margin: 24px 0;
+      margin: 24px 0 0 0;
       border-radius: var(--radius-md);
       overflow: hidden;
       border: 1px solid var(--border-color);
@@ -285,21 +160,60 @@
       background: var(--bg-card);
       text-align: center;
     }
-
+    
     .cs-hero-logo {
-      max-width: 320px;
+      max-width: 240px;
       border-radius: var(--radius-md);
-      margin-top: 28px;
+      margin-top: 32px;
       border: 1px solid var(--border-color);
+      display: block;
     }
 
-    /* --- Methodology protocol visual --- */
+    /* --- Methodology visual flow --- */
+    .cs-method-flow {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 20px;
+      align-items: center;
+      margin: 40px 0;
+    }
+
+    .cs-method-block {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      text-align: center;
+    }
+
+    .cs-method-block h4 {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--accent-1);
+    }
+
+    .cs-method-block p {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .cs-method-arrow {
+      font-size: 2rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* --- Protocol visual --- */
     .cs-protocol {
       background: var(--bg-card);
       border: 1px solid var(--border-color);
       border-radius: var(--radius-lg);
-      padding: 24px 28px;
-      margin: 22px 0 10px;
+      padding: 32px 40px;
+      margin: 40px 0;
       overflow: visible;
     }
 
@@ -308,14 +222,15 @@
       font-size: 1.25rem;
       font-weight: 700;
       margin-bottom: 10px;
+      text-align: center;
     }
 
     .cs-protocol-objective {
       color: var(--text-secondary);
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       line-height: 1.7;
-      margin-bottom: 18px;
-      max-width: 900px;
+      margin-bottom: 32px;
+      text-align: center;
     }
 
     .cs-protocol-objective strong {
@@ -401,11 +316,124 @@
     }
 
     .cs-protocol-footnote {
-      margin-top: 16px;
+      margin-top: 32px;
       font-size: 0.8rem;
       color: var(--text-muted);
       line-height: 1.6;
+      text-align: center;
     }
+
+    /* --- Solution cards --- */
+    .cs-solution-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .cs-solution-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cs-solution-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .cs-solution-card .cs-sol-number {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 800;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .cs-solution-card h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .cs-solution-card p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* --- Findings statements --- */
+    .cs-findings-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin: 40px 0;
+    }
+
+    .cs-finding-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      transition: var(--transition);
+    }
+
+    .cs-finding-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+
+    .cs-finding-card .cs-finding-stat {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 800;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    
+    .cs-finding-card .cs-finding-stat.smaller {
+      font-size: 1.4rem;
+    }
+
+    .cs-finding-card h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .cs-finding-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent-1);
+      margin-bottom: 32px;
+      transition: var(--transition);
+    }
+
+    .back-link:hover { gap: 12px; }
 
     @media (max-width: 980px) {
       .cs-protocol-rail {
@@ -417,191 +445,24 @@
       .cs-protocol-arrow { display: none; }
     }
 
-    @media (max-width: 520px) {
-      .cs-protocol-rail {
-        gap: 14px;
-      }
+    @media (max-width: 768px) {
+      .case-study-hero { min-height: 50vh; padding: 100px 0 40px; }
+      .cs-hero-stats { gap: 32px; }
+      .cs-method-flow { grid-template-columns: 1fr; }
+      .cs-method-arrow { transform: rotate(90deg); }
+      .cs-solution-row { grid-template-columns: 1fr; }
+      .cs-findings-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .case-study-title { font-size: 2rem; }
+      .case-study-meta { font-size: 0.95rem; }
+      .case-study-body { padding: 60px 0; }
+      .cs-section { margin-bottom: 52px; }
+      .cs-chart-img { margin-bottom: 28px; }
+      .cs-protocol { padding: 20px 18px; margin: 24px 0; }
+      .cs-protocol-rail { gap: 14px; }
       .cs-protocol-step { flex-basis: 100%; }
-    }
-
-    /* --- R-generated chart images (match Case Study 2) --- */
-    .cs-chart-img {
-      width: 100%;
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-color);
-      margin: 22px 0;
-      display: block;
-      background: #0f0f17;
-    }
-
-    /* --- Data Visualization Styles --- */
-    .cs-chart-container {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 28px;
-      margin: 28px 0;
-    }
-
-    .cs-chart-title {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 20px;
-    }
-
-    /* Horizontal Bar Chart */
-    .cs-bar-chart {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .cs-bar-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .cs-bar-label {
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-      min-width: 110px;
-      flex-shrink: 0;
-      text-align: right;
-    }
-
-    .cs-bar-track {
-      flex: 1;
-      height: 28px;
-      background: rgba(255,255,255,0.04);
-      border-radius: 6px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .cs-bar-fill {
-      height: 100%;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      padding-right: 10px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: #fff;
-      transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .cs-bar-fill.gradient-blue {
-      background: linear-gradient(135deg, var(--accent-1), #5f9ea0);
-    }
-
-    .cs-bar-fill.gradient-red {
-      background: linear-gradient(135deg, #e74c3c, #c0392b);
-    }
-
-    .cs-bar-fill.gradient-orange {
-      background: linear-gradient(135deg, #f39c12, #e67e22);
-    }
-
-    .cs-bar-fill.gradient-green {
-      background: linear-gradient(135deg, var(--accent-2), #2ecc71);
-    }
-
-    .cs-bar-value {
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: var(--text-primary);
-      min-width: 55px;
-      text-align: right;
-    }
-
-    /* Ring / Donut Chart */
-    .cs-ring-stats {
-      display: flex;
-      gap: 32px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .cs-ring-stat {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .cs-ring-svg {
-      transform: rotate(-90deg);
-    }
-
-    .cs-ring-bg {
-      fill: none;
-      stroke: rgba(255,255,255,0.06);
-    }
-
-    .cs-ring-fill {
-      fill: none;
-      stroke-linecap: round;
-      transition: stroke-dashoffset 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .cs-ring-value {
-      font-size: 1.4rem;
-      font-weight: 800;
-      background: var(--gradient-primary);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .cs-ring-label {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      text-align: center;
-      max-width: 100px;
-    }
-
-    /* Delta indicator */
-    .cs-delta-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 16px;
-    }
-
-    .cs-delta-item {
-      text-align: center;
-      padding: 16px;
-      background: rgba(255,255,255,0.02);
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--border-color);
-    }
-
-    .cs-delta-value {
-      font-size: 1.8rem;
-      font-weight: 800;
-      line-height: 1;
-      margin-bottom: 4px;
-    }
-
-    .cs-delta-value.negative {
-      color: #e74c3c;
-    }
-
-    .cs-delta-value.positive {
-      color: var(--accent-2);
-    }
-
-    .cs-delta-value.warning {
-      color: #f39c12;
-    }
-
-    .cs-delta-sublabel {
-      font-size: 0.7rem;
-      color: var(--text-muted);
     }
   </style>
 </head>
@@ -644,19 +505,29 @@
           <span class="gradient-text">Improving Learnability and Mitigating Cybersickness in Tactical VR</span>
         </h1>
         <p class="case-study-meta">
-          AimXR is a complex spatial VR First-Person Shooter that demands high cognitive load and fine-motor coordination. 
-          Initial heuristic reviews indicated that the game's spatial UI clustering and opaque virtual physics were causing 
-          severe usability friction and cybersickness among novice players.
+          Identifying Fitts's Law violations, mental model collapse, and vestibular mismatch in AimXR.
         </p>
-        <p class="case-study-meta" style="margin-top: 8px;">
-          You can explore the official game overview and introductory trailer on the
-          <a href="https://www.meta.com/en-gb/experiences/aim-xr/4245506092131005/" target="_blank" rel="noopener noreferrer">AimXR page on Meta Quest</a>.
-        </p>
-        <p class="case-study-meta" style="margin-top: 6px;">
-          If you want the full research write‑up and artifacts, you can read the detailed project report
-          <a href="https://docs.google.com/document/d/1e8_ooBrpXoOCHi-IvdeaojRbsynUcbp2lEN6q9RVRtY/edit?usp=sharing" target="_blank" rel="noopener noreferrer">here (Google Doc)</a>.
+        <p class="case-study-meta">
+          <a href="https://www.meta.com/en-gb/experiences/aim-xr/4245506092131005/" target="_blank" rel="noopener noreferrer">AimXR page on Meta Quest</a> • <a href="https://docs.google.com/document/d/1e8_ooBrpXoOCHi-IvdeaojRbsynUcbp2lEN6q9RVRtY/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Detailed project report (Google Doc)</a>
         </p>
         <img src="assets/AIMXRLogo.jpg" alt="AimXR Logo" class="cs-hero-logo" />
+        
+        <!-- Hero Stats -->
+        <div class="cs-hero-stats">
+          <div class="cs-hero-stat">
+            <span class="cs-hero-stat-value">8</span>
+            <span class="cs-hero-stat-label">Participants Evaluated</span>
+          </div>
+          <div class="cs-hero-stat">
+            <span class="cs-hero-stat-value">4</span>
+            <span class="cs-hero-stat-label">Critical Usability Failures</span>
+          </div>
+          <div class="cs-hero-stat">
+            <span class="cs-hero-stat-value">20m</span>
+            <span class="cs-hero-stat-label">Divided Gameplay Session</span>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -665,45 +536,37 @@
   <div class="case-study-body">
     <div class="container">
 
-      <!-- TL;DR -->
+      <!-- 01 — Methodology -->
       <div class="cs-section">
-        <span class="cs-section-number">01 — Executive Summary</span>
-        <h2 class="cs-section-title">Executive Summary</h2>
-        <div class="cs-highlight-grid">
-          <div class="cs-highlight-card">
-            <h4>The Problem</h4>
-            <p>AimXR's spatial UI clustering and opaque virtual physics were causing severe usability friction and cybersickness among novice players.</p>
+        <span class="cs-section-label">01 — Methodology</span>
+        <h2 class="cs-section-title">Mixed-Methods Evaluation</h2>
+        <p class="cs-caption">
+          A controlled onboarding and combat sequence evaluated learnability and compounding strain across the 20-minute session.
+        </p>
+
+        <!-- Role -->
+        <div class="cs-findings-grid" style="margin: 0 0 32px;">
+          <div class="cs-finding-card">
+            <div class="cs-finding-stat smaller">Usability Moderation</div>
+            <h4>Team of Two</h4>
+            <p>Moderated usability testing for half the participants to capture baseline comfort and expectations.</p>
           </div>
-          <div class="cs-highlight-card">
-            <h4>My Role</h4>
-            <p>Worked in a <strong>team of two</strong>. I moderated usability testing for <strong>half the participants (n = 4)</strong> and took <strong>sole ownership</strong> of data synthesis: video session analysis, thematic coding, and descriptive statistical analysis.</p>
-          </div>
-          <div class="cs-highlight-card">
-            <h4>The Impact</h4>
-            <p>Identified <strong>4 critical heuristic failures</strong> (including Fitts's Law violations and mental model collapse) and proposed data-driven redesigns to enhance interaction efficiency, unify mental models, and reduce vestibular mismatch.</p>
+          <div class="cs-finding-card">
+            <div class="cs-finding-stat smaller">Synthesis & Analysis</div>
+            <h4>Sole Ownership</h4>
+            <p>Owned the data synthesis, interpreting GEQ/VRSQ deltas, video observation (headset + body motion), and conceptual themes.</p>
           </div>
         </div>
-      </div>
 
-      <!-- Research Plan -->
-      <div class="cs-section">
-        <span class="cs-section-number">02 — Research Plan & Methodology</span>
-        <h2 class="cs-section-title">Designing the Study</h2>
-        <div class="cs-highlight-grid">
-          <div class="cs-highlight-card">
-            <h4>Participants</h4>
-            <p class="cs-data">n = 8</p>
-            <p>VR novices completing a controlled onboarding → advanced-actions flow.</p>
+        <div class="cs-method-flow">
+          <div class="cs-method-block">
+            <h4>Quantitative Measures</h4>
+            <p>GEQ for Competence/Immersion and VRSQ for Oculomotor strain/disorientation.</p>
           </div>
-          <div class="cs-highlight-card">
-            <h4>Protocol</h4>
-            <p class="cs-data">20 min session</p>
-            <p>Repeated-measures: Tutorial/Combat baseline → Advanced Actions to observe compounding strain.</p>
-          </div>
-          <div class="cs-highlight-card">
-            <h4>Measures</h4>
-            <p class="cs-data">GEQ + VRSQ</p>
-            <p>Competence/Immersion + oculomotor strain/disorientation, triangulated with observation + post-task responses.</p>
+          <div class="cs-method-arrow">→</div>
+          <div class="cs-method-block">
+            <h4>Qualitative Measures</h4>
+            <p>Thematic coding on post-task questionnaires and stitched video observations.</p>
           </div>
         </div>
 
@@ -791,111 +654,104 @@
                 </svg>
               </div>
               <div class="cs-protocol-label">Post‑Test<br/>Evaluation</div>
-              <div class="cs-protocol-sublabel">GEQ + VRSQ + Post‑Task Questionnaire</div>
+              <div class="cs-protocol-sublabel">GEQ + VRSQ + Post‑Task</div>
             </div>
           </div>
 
           <div class="cs-protocol-footnote">
-            The protocol alternates between active VR gameplay and structured evaluation checkpoints to capture both performance breakdowns and compounding discomfort.
+            The protocol alternates between active VR gameplay and structured evaluation checkpoints to capture performance breakdowns.
           </div>
         </div>
-        
-        <h3 style="font-size: 1.1rem; font-weight: 700; margin: 28px 0 16px;">Mixed-Methods Toolkit</h3>
-        <div class="cs-method-list">
-          <div class="cs-method-item">
-            <span class="method-label">Quantitative</span>
-            <p>Administered the <strong>Game Experience Questionnaire (GEQ)</strong> to measure Immersion and Competence, and the <strong>VR Sickness Questionnaire (VRSQ)</strong> to measure Oculomotor Strain and Disorientation.</p>
-          </div>
-          <div class="cs-method-item">
-            <span class="method-label">Qualitative</span>
-            <p>Conducted thematic analysis of Post-Task Questionnaires and stitched video observation (headset recording + physical body movement) to analyze hesitation and physical struggle.</p>
-          </div>
-        </div>
+
       </div>
 
-      <!-- Key Findings -->
+      <!-- 02 — Data Analysis & Key Findings -->
       <div class="cs-section">
-        <span class="cs-section-number">03 — Data Analysis & Key Findings</span>
+        <span class="cs-section-label">02 — Key Findings</span>
         <h2 class="cs-section-title">What the Data Revealed</h2>
-        <p>Triangulating GEQ/VRSQ deltas with observational themes revealed four system-level usability failures:</p>
+        
+        <img src="assets/vr_chart_oculomotor_strain.png" alt="VRSQ oculomotor strain highlights" class="cs-chart-img" />
+        <img src="assets/vr_chart_key_metrics.png" alt="Key VR study metrics" class="cs-chart-img" />
+        <img src="assets/vr_chart_immersion_deltas.png" alt="GEQ immersion deltas" class="cs-chart-img" />
 
-        <div class="cs-highlight-grid">
-          <div class="cs-highlight-card">
-            <h4>Finding 1: Fitts's Law Violations</h4>
-            <p class="cs-data">37.5% of participants (3/8) reported clutter & mis-grabs</p>
+        <div class="cs-findings-grid">
+          <div class="cs-finding-card">
+            <div class="cs-finding-stat">37.5%</div>
+            <h4>Fitts's Law Violations</h4>
             <p>Overlapping belt hitboxes caused frequent mis-grabs that broke flow.</p>
           </div>
-          <div class="cs-highlight-card">
-            <h4>Finding 2: Mental Model Collapse</h4>
-            <p class="cs-data">Task abandonment observed (Participant 8)</p>
+          <div class="cs-finding-card">
+            <div class="cs-finding-stat smaller">Collapse</div>
+            <h4>Mental Model Collapse</h4>
             <p>Inconsistent throwable interactions fractured expectations and drove abandonment.</p>
           </div>
-          <div class="cs-highlight-card">
-            <h4>Finding 3: Physics Opacity</h4>
-            <p class="cs-data">Immersion delta: −0.83 (Participant 7)</p>
-            <p>Opaque virtual physics made “correct” throws feel unpredictable.</p>
+          <div class="cs-finding-card">
+            <div class="cs-finding-stat">-0.83</div>
+            <h4>Physics Opacity</h4>
+            <p>Immersion dropped due to opaque virtual physics making throws feel unpredictable.</p>
           </div>
-          <div class="cs-highlight-card">
-            <h4>Finding 4: Vestibular Mismatch</h4>
-            <p class="cs-data">83.33% initial Oculomotor strain (Participant 8)</p>
-            <p>Comfort vignette didn’t protect users during dynamic motion (e.g., turning/strafing).</p>
+          <div class="cs-finding-card">
+            <div class="cs-finding-stat">83%</div>
+            <h4>Vestibular Mismatch</h4>
+            <p>High initial Oculomotor strain as the comfort vignette failed during dynamic motion.</p>
           </div>
         </div>
-
-        <!-- Data Visualizations (R-generated, image-first like Case Study 2) -->
-        <img src="assets/vr_chart_oculomotor_strain.png" alt="VRSQ oculomotor strain highlights — chart generated with R ggplot2" class="cs-chart-img" />
-        <img src="assets/vr_chart_key_metrics.png" alt="Key VR study metrics — chart generated with R ggplot2" class="cs-chart-img" />
-        <img src="assets/vr_chart_immersion_deltas.png" alt="GEQ immersion deltas — chart generated with R ggplot2" class="cs-chart-img" />
       </div>
 
-      <!-- Solutions -->
+      <!-- 03 — Proposed Solutions -->
       <div class="cs-section">
-        <span class="cs-section-number">04 — Proposed Data-Driven Solutions</span>
-        <h2 class="cs-section-title">Translating Findings into Redesigns</h2>
+        <span class="cs-section-label">03 — Strategic Recommendations</span>
+        <h2 class="cs-section-title">Proposed Data-Driven Solutions</h2>
 
-        <div class="cs-solution-card">
-          <h4>Solution 1: Dynamic Spatial Buffering</h4>
-          <p class="cs-action">Increase spatial padding between belt inventory slots by 20%. Integrate "Gaze-Assisted Hitboxes" — if a user looks at a target but reaches for their belt, the system slightly expands the collision volume of their primary weapon to forgive blind, millimeter-level grabbing inaccuracies.</p>
-          <figure class="cs-image">
-            <img src="assets/redesign proposal 1.png" alt="Redesign proposal showing +20% spatial buffering between inventory belt items" />
-            <figcaption>Redesign proposal: +20% spatial padding between belt inventory slots to reduce mis-grabs</figcaption>
-          </figure>
-        </div>
+        <div class="cs-solution-row">
+          <div class="cs-solution-card">
+            <div class="cs-sol-number">01</div>
+            <h4>Dynamic Spatial Buffering</h4>
+            <p>Increase padding between belt inventory slots by 20% and use "Gaze-Assisted Hitboxes".</p>
+            <figure class="cs-image">
+              <img src="assets/redesign proposal 1.png" alt="Redesign proposal showing +20% spatial padding" />
+              <figcaption>Redesign proposal: +20% spatial padding between belt inventory slots to reduce mis-grabs</figcaption>
+            </figure>
+          </div>
 
-        <div class="cs-solution-card">
-          <h4>Solution 2: Standardized Interaction Models</h4>
-          <p class="cs-action">Unify all throwables to a one-handed, gross-motor interaction model (e.g., pre-lit Molotovs, "teeth-pull" affordance for flashbangs) to reduce cognitive load.</p>
-        </div>
+          <div class="cs-solution-card">
+            <div class="cs-sol-number">02</div>
+            <h4>Trajectory Visualization</h4>
+            <p>Render a diegetic, dashed trajectory arc immediately upon release of a throwable.</p>
+            <figure class="cs-image">
+              <img src="assets/redesign proposal 3.png" alt="Redesign proposal showing dashed trajectory arc" />
+              <figcaption>Redesign proposal: Diegetic trajectory arc providing immediate feedback on throw direction</figcaption>
+            </figure>
+          </div>
 
-        <div class="cs-solution-card">
-          <h4>Solution 3: Post-Throw Trajectory Visualization</h4>
-          <p class="cs-action">Render a diegetic, dashed trajectory arc immediately upon release of a throwable.</p>
-          <p class="cs-why">This bridges the kinesthetic disconnect by instantly showing the object's path, providing the immediate feedback loop novices need to calibrate their physical effort for the next throw.</p>
-          <figure class="cs-image">
-            <img src="assets/redesign proposal 3.png" alt="Redesign proposal showing dashed trajectory arc visualization after grenade throw" />
-            <figcaption>Redesign proposal: Diegetic trajectory arc providing immediate feedback on throw direction</figcaption>
-          </figure>
-        </div>
+          <div class="cs-solution-card">
+            <div class="cs-sol-number">03</div>
+            <h4>Standardized Interaction Models</h4>
+            <p>Unify all throwables to a one-handed, gross-motor interaction model (e.g., pre-lit Molotovs) to reduce cognitive load.</p>
+          </div>
 
-        <div class="cs-solution-card">
-          <h4>Solution 4: Omni-Directional Vignetting</h4>
-          <p class="cs-action">Decouple the comfort vignette from strictly forward movement. Trigger FOV restriction during any artificial translation or rotation (strafing, falling, snap-turning).</p>
-          <p class="cs-why">Scaling opacity based on camera speed protects the user's vestibular system and mitigates "phantom falling".</p>
+          <div class="cs-solution-card">
+            <div class="cs-sol-number">04</div>
+            <h4>Omni-Directional Vignetting</h4>
+            <p>Decouple the comfort vignette from strictly forward movement to protect the user's vestibular system.</p>
+          </div>
         </div>
       </div>
 
       <!-- Limitations -->
       <div class="cs-section">
-        <span class="cs-section-number">05 — Limitations &amp; Future Research</span>
+        <span class="cs-section-label">04 — Limitations &amp; Future Research</span>
         <h2 class="cs-section-title">Limitations &amp; Future Research</h2>
-        <div class="cs-highlight-grid">
-          <div class="cs-highlight-card">
+        <div class="cs-findings-grid" style="margin: 0;">
+          <div class="cs-finding-card">
+            <div class="cs-finding-stat">N = 8</div>
             <h4>Sample Size Constraints</h4>
-            <p>Testing was limited to <strong>8 VR novices</strong> in a highly controlled, isolated environment. Real‑world physical fatigue over longer sessions was not measured.</p>
+            <p>Testing was limited to 8 VR novices. Real‑world physical fatigue over longer sessions was not fully measured.</p>
           </div>
-          <div class="cs-highlight-card">
-            <h4>Next Steps</h4>
-            <p><strong>Gaze‑Assisted Hitbox</strong> and <strong>Omni‑Directional Vignetting</strong> are data‑driven theories. Next, prototype them and run A/B tests against the original UI to mathematically validate error reduction.</p>
+          <div class="cs-finding-card">
+            <div class="cs-finding-stat smaller">Next Steps</div>
+            <h4>Prototype A/B Testing</h4>
+            <p>Gaze-Assisted and Omni-directional strategies are formulated theories. Next: mathematically validate error reduction.</p>
           </div>
         </div>
       </div>
