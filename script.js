@@ -124,8 +124,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const btn = contactForm.querySelector('.btn-primary');
     const originalHTML = btn.innerHTML;
     
-    // Get form data
-    const formData = new FormData(contactForm);
+    // Get form values for fallback
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
     const action = contactForm.getAttribute('action');
 
     try {
@@ -135,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const response = await fetch(action, {
         method: 'POST',
-        body: formData,
+        body: new FormData(contactForm),
         headers: {
           'Accept': 'application/json'
         }
@@ -146,12 +148,19 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.style.background = 'linear-gradient(135deg, #00d4aa, #00b894)';
         contactForm.reset();
       } else {
-        throw new Error('Form submission failed');
+        throw new Error('Automation failed, switching to mailto');
       }
     } catch (error) {
-      btn.innerHTML = `<span>Error! Try again.</span>`;
-      btn.style.background = 'linear-gradient(135deg, #ff4757, #ff6b81)';
-      btn.disabled = false;
+      // FALLBACK: Opening the system email client (Gmail app, Outlook, etc.)
+      const subject = encodeURIComponent(`Portfolio Message from ${name}`);
+      const body = encodeURIComponent(`${message}\n\n---\nFrom: ${name} (${email})`);
+      const mailtoUrl = `mailto:gdipesh540@gmail.com?subject=${subject}&body=${body}`;
+      
+      // This will trigger the browser's "Choose account" behavior via their email app
+      window.location.href = mailtoUrl;
+
+      btn.innerHTML = `<span>Opening Email App...</span>`;
+      btn.style.background = 'linear-gradient(135deg, #4285f4, #34a853)';
     }
 
     setTimeout(() => {
