@@ -118,22 +118,47 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Contact Form ---
   const contactForm = document.getElementById('contactForm');
 
-  contactForm.addEventListener('submit', (e) => {
+  contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const btn = contactForm.querySelector('.btn-primary');
     const originalHTML = btn.innerHTML;
+    
+    // Get form data
+    const formData = new FormData(contactForm);
+    const action = contactForm.getAttribute('action');
 
-    btn.innerHTML = `<span>Message Sent! ✓</span>`;
-    btn.style.background = 'linear-gradient(135deg, #00d4aa, #00b894)';
-    btn.disabled = true;
+    try {
+      // Show loading state
+      btn.innerHTML = `<span>Sending...</span>`;
+      btn.disabled = true;
+
+      const response = await fetch(action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        btn.innerHTML = `<span>Message Sent! ✓</span>`;
+        btn.style.background = 'linear-gradient(135deg, #00d4aa, #00b894)';
+        contactForm.reset();
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch (error) {
+      btn.innerHTML = `<span>Error! Try again.</span>`;
+      btn.style.background = 'linear-gradient(135deg, #ff4757, #ff6b81)';
+      btn.disabled = false;
+    }
 
     setTimeout(() => {
       btn.innerHTML = originalHTML;
       btn.style.background = '';
       btn.disabled = false;
-      contactForm.reset();
-    }, 3000);
+    }, 4000);
   });
 
   // --- Smooth scroll for nav links ---
