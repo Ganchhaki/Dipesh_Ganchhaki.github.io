@@ -118,39 +118,56 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Contact Form ---
   const contactForm = document.getElementById('contactForm');
 
-  contactForm.addEventListener('submit', (e) => {
+  contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const btn = contactForm.querySelector('.btn-primary');
     const originalHTML = btn.innerHTML;
     
-    // Get form values
+    // Get form values for fallback
     const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
     const message = document.getElementById('message').value;
+    const action = contactForm.getAttribute('action');
 
-    // Construct the direct email link
-    // This triggers the device's native "account picker" behavior
-    const subject = encodeURIComponent(`Message from ${name}`);
-    const body = encodeURIComponent(`Hi Dipesh,\n\n${message}\n\nBest regards,\n${name}`);
-    const mailtoUrl = `mailto:gdipesh540@gmail.com?subject=${subject}&body=${body}`;
+    try {
+      // Show loading state
+      btn.innerHTML = `<span>Sending...</span>`;
+      btn.disabled = true;
 
-    // Open the email app
-    window.location.href = mailtoUrl;
+      const response = await fetch(action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
 
-    // Show visual confirmation on the button
-    btn.innerHTML = `<span>Opening Mail App...</span>`;
-    btn.style.background = 'linear-gradient(135deg, #4285f4, #34a853)';
-    
-    setTimeout(() => {
-      btn.innerHTML = `<span>Message Prepared! ✓</span>`;
-      btn.style.background = 'linear-gradient(135deg, #00d4aa, #00b894)';
-      contactForm.reset();
-    }, 2000);
+      if (response.ok) {
+        btn.innerHTML = `<span>Message Sent! ✓</span>`;
+        btn.style.background = 'linear-gradient(135deg, #00d4aa, #00b894)';
+        contactForm.reset();
+      } else {
+        throw new Error('Automation failed, switching to mailto');
+      }
+    } catch (error) {
+      // FALLBACK: Opening the system email client (Gmail app, Outlook, etc.)
+      const subject = encodeURIComponent(`Portfolio Message from ${name}`);
+      const body = encodeURIComponent(`${message}\n\n---\nFrom: ${name} (${email})`);
+      const mailtoUrl = `mailto:gdipesh540@gmail.com?subject=${subject}&body=${body}`;
+      
+      // This will trigger the browser's "Choose account" behavior via their email app
+      window.location.href = mailtoUrl;
+
+      btn.innerHTML = `<span>Opening Email App...</span>`;
+      btn.style.background = 'linear-gradient(135deg, #4285f4, #34a853)';
+    }
 
     setTimeout(() => {
       btn.innerHTML = originalHTML;
       btn.style.background = '';
-    }, 6000);
+      btn.disabled = false;
+    }, 4000);
   });
 
   // --- Smooth scroll for nav links ---
