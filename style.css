@@ -710,7 +710,7 @@ ul { list-style: none; }
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 60px;
-  align-items: start;
+  align-items: flex-start;
 }
 
 .contact-info {
@@ -722,8 +722,8 @@ ul { list-style: none; }
 .contact-card {
   display: flex;
   gap: 16px;
-  align-items: flex-start;
-  padding: 22px;
+  align-items: center; /* Center icon and text vertically inside card */
+  padding: 14px 22px; /* Add normal padding back so it looks like a card */
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
