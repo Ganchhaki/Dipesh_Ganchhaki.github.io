@@ -1,14 +1,26 @@
 // ─── Image Preloading Logic ───
 const preloadImages = () => {
-    const images = Array.from(document.querySelectorAll('img'));
+    // Only wait for critical images to speed up initial load
+    const images = Array.from(document.querySelectorAll('img[data-critical="true"]'));
     let loadedCount = 0;
     const totalMedia = images.length;
     const loadingBar = document.getElementById('loadingBar');
     const loadingOverlay = document.getElementById('loadingOverlay');
     const loadingText = document.getElementById('loadingText');
 
+    const finishLoading = () => {
+        if (loadingOverlay && !loadingOverlay.classList.contains('fade-out')) {
+            loadingOverlay.classList.add('fade-out');
+            ScrollTrigger.refresh();
+        }
+    };
+
+    // Safety timeout: don't wait more than 5 seconds
+    const timeout = setTimeout(finishLoading, 5000);
+
     if (totalMedia === 0) {
-        if (loadingOverlay) loadingOverlay.classList.add('fade-out');
+        finishLoading();
+        clearTimeout(timeout);
         return;
     }
 
@@ -19,16 +31,17 @@ const preloadImages = () => {
         if (loadingText) loadingText.innerText = `Initializing Experience... ${progress}%`;
 
         if (loadedCount >= totalMedia) {
-            setTimeout(() => {
-                if (loadingOverlay) loadingOverlay.classList.add('fade-out');
-                ScrollTrigger.refresh();
-            }, 500);
+            clearTimeout(timeout);
+            setTimeout(finishLoading, 500);
         }
     };
 
     images.forEach(img => {
         if (img.complete) updateProgress();
-        else { img.onload = updateProgress; img.onerror = updateProgress; }
+        else { 
+            img.onload = updateProgress; 
+            img.onerror = updateProgress; 
+        }
     });
 };
 
