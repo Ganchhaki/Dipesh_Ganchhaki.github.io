@@ -801,7 +801,7 @@ h2[style*="font-weight: 400"] {
 
 /* ─── Title Slide ─── */
 .title-slide {
-    background: linear-gradient(rgba(0,8,20,0.8), rgba(0,8,20,0.9)), url('assets/onboarding/images/slide 1.png');
+    background: linear-gradient(rgba(0,8,20,0.8), rgba(0,8,20,0.9)), url('assets/onboarding/images/slide 1.webp');
     background-size: cover;
     background-position: center;
 }
