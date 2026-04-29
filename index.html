@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UX Researcher Portfolio</title>
+  <meta name="description" content="UX Researcher portfolio — turning messy behavioral signals into clear product decisions through mixed-methods research and rigorous analysis." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=1.1" />
+</head>
+<body>
+  <!-- Cursor Glow -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo" id="navLogo">Dipesh Ganchhaki</a>
+      <div class="nav-links" id="navLinks">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#contact" class="nav-link" data-highlight>Contact</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1 class="hero-name" data-animate="fade-up" id="heroName">
+          <span class="gradient-text">Dipesh Ganchhaki</span>
+        </h1>
+        <p class="hero-greeting" data-animate="fade-up" data-delay="100">UX Researcher</p>
+        <p class="hero-tagline" data-animate="fade-up" data-delay="200">
+          I turn messy behavioral signals into clear product decisions through
+          <em class="accent-italic">mixed-methods research</em>, <em class="accent-italic">human factors</em>,
+          and <em class="accent-italic">evidence-driven synthesis</em>.
+        </p>
+
+        <div class="hero-cta" data-animate="fade-up" data-delay="400">
+          <a href="#projects" class="btn btn-primary">
+            <span>View My Work</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+        </div>
+
+      </div>
+      <div class="hero-image" data-animate="fade-left" data-delay="200">
+        <div class="image-frame">
+          <div class="image-frame-border"></div>
+          <img src="assets/profile.png" alt="Profile photo" />
+          <div class="image-dots"></div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator" data-animate="fade-up" data-delay="700">
+      <div class="scroll-line"></div>
+      <span>Scroll to explore</span>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section about" id="about">
+    <div class="container">
+      <div class="section-header" data-animate="fade-up">
+        <span class="section-tag">01 — About</span>
+      </div>
+      <p class="about-statement" data-animate="fade-up" data-delay="100">
+        I bridge human behavior and complex spatial systems—mapping what people do in-the-moment to the interface changes that make learning feel effortless.
+      </p>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="section skills" id="skills">
+    <div class="container">
+      <div class="section-header" data-animate="fade-up">
+        <span class="section-tag">02 — Skills</span>
+      </div>
+      <div class="skills-list" data-animate="fade-up" data-delay="100">
+        <div class="skill-item" id="skill-1">
+          <div class="skill-header">
+            <h3>Research Methods</h3>
+            <span class="skill-toggle">+</span>
+          </div>
+          <ul class="skill-details">
+            <li>Evaluative Usability Testing</li>
+            <li>Mixed-Methods Study Design</li>
+            <li>Survey Architecture (Funnel Approach)</li>
+            <li>Behavioral Observation</li>
+          </ul>
+        </div>
+        <div class="skill-item" id="skill-2">
+          <div class="skill-header">
+            <h3>Analysis &amp; Synthesis</h3>
+            <span class="skill-toggle">+</span>
+          </div>
+          <ul class="skill-details">
+            <li>Thematic Analysis &amp; Coding</li>
+            <li>Video Session Analysis</li>
+            <li>Descriptive Statistics</li>
+            <li>Affinity Mapping</li>
+            <li>Insight Reporting</li>
+          </ul>
+        </div>
+        <div class="skill-item" id="skill-3">
+          <div class="skill-header">
+            <h3>Tools &amp; Collaboration</h3>
+            <span class="skill-toggle">+</span>
+          </div>
+          <ul class="skill-details">
+            <li>Standardized Psychometrics (GEQ, VRSQ, SUS)</li>
+            <li>Figma &amp; FigJam</li>
+            <li>Miro</li>
+            <li>Research Documentation</li>
+            <li>Stakeholder Presentation</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section (Placeholder) -->
+  <section class="section projects" id="projects">
+    <div class="container">
+      <div class="section-header" data-animate="fade-up">
+        <span class="section-tag">03 — Projects</span>
+        <h2 class="section-title">Selected <span class="gradient-text">case studies</span></h2>
+
+      </div>
+      <div class="projects-slider-container" data-animate="fade-up" data-delay="100">
+        <button class="slider-btn prev" id="prevBtn" aria-label="Previous project">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        
+        <div class="projects-grid" id="projectsGrid">
+
+          <!-- Project 1: Mahindra MR Onboarding -->
+          <article class="project-card placeholder-card" id="project-3">
+            <div class="project-thumbnail">
+              <img src="assets/onboarding/onboarding_thumbnail.png" alt="Mahindra XEV 9e - MR Onboarding" />
+            </div>
+            <div class="project-info">
+              <h3 class="project-title">Mixed Reality Onboarding: Converting Complexity into Confidence</h3>
+              <a href="case-study-3.html" class="project-link">
+                View Case Study
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- Project 2: VR Tactical Research -->
+          <article class="project-card placeholder-card" id="project-2">
+            <div class="project-thumbnail">
+              <img src="assets/AIMXRLogo.jpg" alt="AimXR — Tactical VR FPS" />
+            </div>
+            <div class="project-info">
+              <h3 class="project-title">Improving Learnability and Mitigating Cybersickness in Tactical VR</h3>
+              <a href="case-study-1.html" class="project-link">
+                View Case Study
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- Project 3: Ad Irritation Study -->
+          <article class="project-card placeholder-card" id="project-1">
+            <div class="project-thumbnail">
+              <img src="assets/youtube_logo.png" alt="YouTube Ad Irritation Study" />
+            </div>
+            <div class="project-info">
+              <h3 class="project-title">Evaluating Intrusive UI: Measuring Ad Irritation and User Frustration</h3>
+              <a href="case-study-2.html" class="project-link">
+                View Case Study
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </article>
+
+        </div>
+
+        <button class="slider-btn next" id="nextBtn" aria-label="Next project">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Contact Section -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <div class="section-header" data-animate="fade-up">
+        <span class="section-tag">04 — Contact</span>
+        <h2 class="section-title">Let's <span class="gradient-text">connect</span></h2>
+        <p class="section-subtitle">I'm always open to discussing UX research, internship opportunities, or collaboration ideas.</p>
+      </div>
+      <div class="contact-grid" data-animate="fade-up" data-delay="100">
+        <div class="contact-info">
+          <div class="form-group">
+            <label>Email</label>
+            <div class="contact-card">
+              <div class="contact-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.5"/><polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="1.5"/></svg>
+              </div>
+              <div>
+                <a href="mailto:gdipesh540@gmail.com">gdipesh540@gmail.com</a>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>LinkedIn</label>
+            <div class="contact-card">
+              <div class="contact-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" stroke="currentColor" stroke-width="1.5"/><rect x="2" y="9" width="4" height="12" stroke="currentColor" stroke-width="1.5"/><circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="1.5"/></svg>
+              </div>
+              <div>
+                <a href="https://www.linkedin.com/in/dipesh-ganchhaki" target="_blank">linkedin.com/in/dipesh-ganchhaki</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <form class="contact-form" id="contactForm" action="https://formspree.io/f/xlgpodkg" method="POST">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="your@email.com" autocomplete="email" required />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Tell me about your project or opportunity..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full">
+            <span>Send Message</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M14 2L7 9M14 2l-4 12-3-5-5-3 12-4z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <p class="footer-copy">&copy; 2026 — Designed & built with purpose.</p>
+        <div class="footer-links">
+          <a href="https://www.linkedin.com/in/dipesh-ganchhaki" target="_blank" aria-label="LinkedIn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" stroke="currentColor" stroke-width="1.5"/><rect x="2" y="9" width="4" height="12" stroke="currentColor" stroke-width="1.5"/><circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="1.5"/></svg>
+          </a>
+
+          <a href="mailto:gdipesh540@gmail.com" aria-label="Email">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.5"/><polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="1.5"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

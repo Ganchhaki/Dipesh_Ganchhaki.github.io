@@ -1,0 +1,890 @@
+:root {
+    --bg: #000814; /* Deeper black for higher contrast */
+    --surface: rgba(0, 15, 25, 0.9);
+    --primary: #00f5d4; /* Neon Teal */
+    --primary-dark: #00bbf9; /* Bright Blue */
+    --accent: #fee440; /* Vibrant Yellow/Amber */
+    --accent-dark: #f15bb5; /* Pink/Magenta instead of Red */
+    --accent-light: #9b5de5; /* Purple */
+    --problem: #ff9f1c; /* Bright Orange for problems (replacing red) */
+    --problem-dark: #e85d04;
+    --text-main: #f8f9fa;
+    --text-muted: #94D2BD;
+    --slide-transition: 1s cubic-bezier(0.85, 0, 0.15, 1);
+    --glass-border: rgba(148, 210, 189, 0.3);
+    --glow-primary: rgba(0, 245, 212, 0.3);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: auto;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg);
+    color: var(--text-main);
+    overflow-x: hidden;
+    line-height: 1.5;
+}
+
+h1, h2, h3 {
+    font-family: 'Archivo', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    font-weight: 900;
+}
+
+/* Use Inter for lighter headings as Archivo is a heavy display font */
+h2[style*="font-weight: 200"], 
+h2[style*="font-weight: 300"],
+h2[style*="font-weight: 400"] {
+    font-family: 'Inter', sans-serif;
+}
+
+.hl-blue { color: var(--primary) !important; }
+.hl-yellow { color: var(--accent) !important; }
+
+.brief-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 2px solid var(--accent);
+    padding: 1.5rem 2rem;
+    border-radius: 24px;
+    margin-top: 1.5rem;
+    backdrop-filter: blur(10px);
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    color: white !important;
+}
+
+.brief-card span {
+    color: white !important;
+}
+
+/* ─── Presentation Container ─── */
+.presentation-container {
+    width: 100vw;
+    position: relative;
+}
+
+.slides-wrapper {
+    width: 100vw;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* ─── Slide Base ─── */
+.slide {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10vh 6vw;
+    background-color: var(--bg);
+    overflow: hidden;
+}
+
+.slide-bg {
+    position: absolute;
+    inset: 0;
+    background: 
+        radial-gradient(circle at 85% 15%, rgba(0, 245, 212, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 15% 85%, rgba(254, 228, 64, 0.05) 0%, transparent 40%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* ─── Content Layouts ─── */
+.content-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 4rem;
+    max-width: 1400px;
+    width: 100%;
+    max-height: 82vh;
+    align-items: center;
+    will-change: transform, opacity;
+}
+
+.full-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 1200px;
+    width: 100%;
+    text-align: center;
+    will-change: transform, opacity;
+}
+
+.text-block {
+    /* removed overflow hidden to prevent title clipping */
+}
+
+/* ─── Typography ─── */
+.slide h2 {
+    font-size: clamp(2rem, 5vh, 3.8rem);
+    margin-bottom: 2vh;
+    color: var(--primary);
+    line-height: 1;
+}
+
+.text-block p {
+    font-size: clamp(1rem, 2.2vh, 1.25rem);
+    color: var(--text-muted);
+    margin-bottom: 2.5vh;
+    font-weight: 300;
+}
+
+.section-label {
+    color: var(--problem);
+    font-weight: 900;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    display: block;
+    letter-spacing: 0.1em;
+}
+
+/* ─── List Items ─── */
+.list-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1.2vh;
+    gap: 1.2rem;
+    font-size: clamp(0.9rem, 1.8vh, 1.1rem);
+    background: rgba(255, 255, 255, 0.03);
+    padding: 1.2vh 1.5vw;
+    border-radius: 16px;
+    border-left: 4px solid var(--primary-dark);
+    will-change: transform, opacity;
+}
+
+.list-item strong {
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 0.85em;
+    letter-spacing: 0.05em;
+}
+
+/* ─── Image Containers ─── */
+.image-container {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    border: 1px solid var(--glass-border);
+    background: var(--surface);
+    backdrop-filter: blur(12px);
+    height: 100%;
+    display: flex;
+    will-change: clip-path;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    will-change: transform;
+}
+
+/* ─── Image Stacks ─── */
+.image-stack-grid {
+    display: grid;
+    gap: 1.5rem;
+    width: 100%;
+    height: 100%;
+    max-height: 75vh;
+}
+
+.image-stack-grid-2 { grid-template-rows: 1fr 1fr; }
+.image-stack-grid-3 { grid-template-rows: 1fr 1fr 1fr; }
+
+/* ─── Cycle Cards (Storyboarding) ─── */
+.cycle-card {
+    position: relative;
+    width: 100%;
+    height: 450px;
+    border-radius: 24px;
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--glass-border);
+}
+
+.cycle-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.cycle-nav:hover {
+    background: var(--primary);
+    color: var(--bg);
+    border-color: var(--primary);
+}
+
+.cycle-nav.prev { left: 1rem; }
+.cycle-nav.next { right: 1rem; }
+
+.cycle-dots {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.8rem;
+    z-index: 100;
+}
+
+.cycle-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cycle-dot.active {
+    background: var(--primary);
+    transform: scale(1.3);
+    box-shadow: 0 0 10px var(--glow-primary);
+}
+
+.cycle-item {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    opacity: 0;
+    visibility: hidden;
+    will-change: transform, opacity;
+}
+
+.cycle-item .image-container {
+    height: 65%;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    background: #000;
+}
+
+.cycle-item .image-container img {
+    object-fit: contain;
+}
+
+.cycle-item .cycle-text {
+    padding: 1.5rem;
+    text-align: left;
+}
+
+.cycle-item .cycle-text h3 {
+    font-size: 1.2rem;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+}
+
+.cycle-item .cycle-text p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* ─── Storyboard Items (Grid version) ─── */
+.storyboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    width: 100%;
+}
+
+.feasibility-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.feasibility-grid .challenge-card {
+    flex: 1 1 300px;
+    max-width: 400px;
+}
+
+.storyboard-item {
+    background: var(--surface);
+    border-radius: 24px;
+    padding: 1.5rem;
+    border: 1px solid var(--glass-border);
+    text-align: left;
+    will-change: transform, opacity;
+}
+
+.storyboard-item img {
+    width: 100%;
+    aspect-ratio: 16/10;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+}
+
+.storyboard-item h3 {
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+}
+
+/* ─── Persona Ecosystem ─── */
+.persona-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.persona-card {
+    background: var(--surface);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 1.5rem;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.persona-card.primary {
+    z-index: 3;
+    border-color: rgba(0, 245, 212, 0.4);
+}
+
+.persona-card.secondary {
+    z-index: 2;
+    border-color: rgba(254, 228, 64, 0.2);
+}
+
+.persona-card.tertiary {
+    z-index: 1;
+    opacity: 0.9;
+}
+
+.persona-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--primary);
+}
+
+.persona-card.primary::before { background: var(--primary); }
+.persona-card.secondary::before { background: var(--accent); }
+.persona-card.tertiary::before { background: var(--accent-light); }
+
+.persona-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.persona-img-container {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--glass-border);
+    flex-shrink: 0;
+}
+
+.persona-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.persona-title h3 {
+    font-size: 1.2rem;
+    margin: 0;
+    color: var(--text-main);
+}
+
+.persona-tag {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 900;
+    color: var(--accent);
+}
+
+.persona-bio {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.bio-pill {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.2rem 0.6rem;
+    border-radius: 100px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.persona-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex-grow: 1;
+}
+
+.detail-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.detail-label {
+    font-size: 0.75rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: var(--primary);
+    letter-spacing: 0.05em;
+}
+
+.detail-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.detail-section li {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    position: relative;
+    padding-left: 1rem;
+    margin-bottom: 0.2rem;
+}
+
+.detail-section li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 900;
+}
+
+.detail-section p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+    margin: 0;
+    font-style: italic;
+}
+
+/* ─── Relationship Map ─── */
+.relationship-map {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    width: 100%;
+    margin-top: 4rem;
+    position: relative;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.map-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.node-role {
+    font-size: 1rem;
+    font-weight: 900;
+    color: var(--accent);
+    text-transform: uppercase;
+}
+
+.node-action {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-top: 0.2rem;
+}
+
+.map-arrow {
+    font-size: 1.5rem;
+    color: var(--primary);
+    font-weight: 100;
+}
+
+/* ─── Challenge Cards ─── */
+.challenge-card {
+    background: var(--surface);
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid var(--glass-border);
+    text-align: left;
+    width: 100%;
+    will-change: transform, opacity;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.challenge-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 0.8rem;
+}
+
+.challenge-icon {
+    color: var(--primary);
+    background: rgba(0, 245, 212, 0.1);
+    padding: 0.5rem;
+    border-radius: 8px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    flex-shrink: 0;
+}
+
+.challenge-icon svg {
+    width: 100%;
+    height: 100%;
+    stroke: currentColor;
+    stroke-width: 2.5px;
+}
+
+.challenge-card h3 {
+    color: var(--accent);
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.challenge-card p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* ─── Research Slide ─── */
+.insights-bar {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    width: 100%;
+    margin-bottom: 4vh;
+}
+
+.insight-card {
+    background: var(--surface);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 3vh 2.5vw;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: grid;
+    grid-template-columns: 1fr 120px;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.insight-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 245, 212, 0.1);
+}
+
+.insight-card .chart-container {
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.insight-card h3 {
+    font-size: clamp(1.8rem, 4vh, 2.5rem);
+    color: var(--accent);
+    margin-bottom: 0.2rem;
+    line-height: 1;
+}
+
+.insight-card .label {
+    font-weight: 900;
+    font-size: 0.8rem;
+    color: var(--text-main);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.insight-card p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.segment-progression {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    width: 100%;
+    margin-top: 2vh;
+}
+
+.segment-card {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 24px;
+    padding: 2.5rem 1.5rem 1.5rem;
+    text-align: left;
+    border: 1px solid rgba(255,255,255,0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.segment-card .badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.5rem 1rem;
+    font-size: 0.7rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.1);
+    border-bottom-left-radius: 12px;
+}
+
+.segment-card h4 {
+    font-family: 'Archivo', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.segment-card .price {
+    font-size: 1.1rem;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.cockpit-viz {
+    height: 60px;
+    display: flex;
+    gap: 8px;
+    margin-bottom: 1.5rem;
+    align-items: center;
+}
+
+.screen-icon {
+    height: 40px;
+    width: 60px;
+    background: rgba(0, 245, 212, 0.2);
+    border: 1px solid var(--primary);
+    border-radius: 4px;
+    position: relative;
+}
+
+.screen-icon::after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    background: rgba(0, 245, 212, 0.4);
+    border-radius: 2px;
+}
+
+.pill-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.pill {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.3rem 0.6rem;
+    border-radius: 100px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.complexity-bar {
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(90deg, #4caf50 0%, #ff9800 50%, #00f5d4 100%);
+    border-radius: 100px;
+    margin: 4vh 0 1vh;
+    position: relative;
+}
+
+.complexity-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.65rem;
+    font-weight: 900;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* ─── Navigation UI ─── */
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    width: 0%;
+    z-index: 1000;
+}
+
+.slide-indicator {
+    position: fixed;
+    bottom: 2rem;
+    left: 3rem;
+    font-family: 'Archivo', sans-serif;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    letter-spacing: 0.4em;
+    font-weight: 900;
+    z-index: 1000;
+}
+
+/* ─── Title Slide ─── */
+.title-slide {
+    background: linear-gradient(rgba(0,8,20,0.8), rgba(0,8,20,0.9)), url('assets/onboarding/images/slide 1.png');
+    background-size: cover;
+    background-position: center;
+}
+
+/* ─── Loading Overlay ─── */
+#loadingOverlay {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease;
+}
+
+#loadingOverlay.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#loadingBar {
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    margin-top: 1rem;
+    transition: width 0.3s;
+}
+
+.figma-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+    padding: 0.8rem 1.8rem;
+    background: rgba(0, 245, 212, 0.1);
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    width: fit-content;
+}
+
+.figma-btn:hover {
+    background: var(--primary);
+    color: var(--bg);
+    box-shadow: 0 0 20px rgba(0, 245, 212, 0.4);
+    transform: translateY(-2px);
+}
+
+/* ─── Lightbox ─── */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.lightbox.active {
+    display: flex;
+    opacity: 1;
+}
+
+.lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+}
+
+.close-lightbox {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    color: white;
+    font-size: 3rem;
+    cursor: pointer;
+}

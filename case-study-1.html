@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AimXR - VR Usability & Experience Case Study</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo:wght@100..900&family=Inter:wght@100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="onboarding-styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Custom overrides for tactical theme if needed */
+        :root {
+            --primary: #34a853; /* Success Green from protocol badges */
+            --accent: #fee440;
+            --bg: #0a0a0f;
+        }
+        .cs-hero-logo {
+            max-width: 200px;
+            border-radius: 12px;
+            margin-top: 2rem;
+            border: 1px solid var(--glass-border);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="loadingOverlay">
+        <p id="loadingText">Initializing Tactical Intel... 0%</p>
+        <div style="width: 200px; background: rgba(255,255,255,0.1); height: 2px;">
+            <div id="loadingBar"></div>
+        </div>
+    </div>
+
+    <div class="progress-bar" id="progressBar"></div>
+
+    <div class="presentation-container">
+        <div class="slides-wrapper" id="slidesWrapper">
+
+            <!-- 1. Title Slide -->
+            <section class="slide title-slide" style="background: linear-gradient(rgba(0,8,20,0.85), rgba(0,8,20,0.95)), url('assets/AIMXRLogo.jpg'); background-size: cover; background-position: center;">
+                <div class="slide-bg"></div>
+                <div class="full-content">
+                    <span class="section-label">Evaluative Research</span>
+                    <h1 style="color: var(--primary); font-weight: 400;">Tactical VR<br>Experience</h1>
+                    <p class="body-large" style="max-width: 600px;">Improving learnability and gameplay experience through usability testing in high-pressure tactical environments.</p>
+                    <img src="assets/AIMXRLogo.jpg" alt="AimXR Logo" class="cs-hero-logo">
+                </div>
+            </section>
+
+            <!-- 2. The Context -->
+            <section class="slide">
+                <div class="slide-bg"></div>
+                <div class="content-grid">
+                    <div class="text-block">
+                        <span class="section-label">The Project</span>
+                        <h2>AimXR: Tactical VR</h2>
+                        <p>AimXR is a tactical VR shooter where high-stakes combat demands seamless interaction and deep immersion.</p>
+                        <div class="list-item"><strong>Objective:</strong> Optimize interaction flow to enhance player immersion and combat satisfaction.</div>
+                        <div class="list-item"><strong>Focus:</strong> Seamless Mechanics, Player Intuition, and Interaction Fidelity.</div>
+                        <div class="list-item"><strong>Target:</strong> Creating an effortless "flow state" for players in high-stakes scenarios.</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="assets/AIMXRLogo.jpg" alt="AimXR Tactical Environment">
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. Methodology -->
+            <section class="slide">
+                <div class="slide-bg"></div>
+                <div class="content-grid">
+                    <div class="image-container">
+                        <img src="assets/vr_methodology_protocol.png" alt="Testing Protocol">
+                    </div>
+                    <div class="text-block">
+                        <span class="section-label">Methodology</span>
+                        <h2>Mixed-Methods Evaluation</h2>
+                        <p>A controlled 20-minute session alternating between active combat and structured evaluation.</p>
+                        <div class="list-item"><strong>Quantitative:</strong> GEQ (Immersion) & VRSQ (Cybersickness) metrics.</div>
+                        <div class="list-item"><strong>Qualitative:</strong> Thematic coding of video observations and post-task interviews.</div>
+                        <div class="list-item"><strong>Sample:</strong> N = 8 participants (primarily VR novices).</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. Key Findings Data -->
+            <section class="slide">
+                <div class="slide-bg"></div>
+                <div class="full-content" style="justify-content: flex-start; padding-top: 10vh;">
+                    <div class="title-block" style="text-align: left; width: 100%; margin-bottom: 5vh;">
+                        <span class="section-label">DATA ANALYSIS</span>
+                        <h2 style="color: var(--primary) !important;">What the Data Revealed</h2>
+                    </div>
+
+                    <div class="insights-bar">
+                        <div class="insight-card">
+                            <div class="card-content">
+                                <h3>37.5%</h3>
+                                <span class="label">Targeting Errors</span>
+                                <p>Overlapping belt hitboxes caused frequent mis-grabs breaking interaction flow.</p>
+                            </div>
+                            <div class="chart-container">
+                                <svg width="100" height="100" viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="8" />
+                                    <circle cx="50" cy="50" r="40" fill="none" stroke="var(--primary)" stroke-width="8" stroke-dasharray="251.2" stroke-dashoffset="157" stroke-linecap="round" transform="rotate(-90 50 50)" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="insight-card">
+                            <div class="card-content">
+                                <h3>-0.83</h3>
+                                <span class="label">Unpredictable Physics</span>
+                                <p>Inability to gauge virtual physics led to significant precision drop in throwable interactions.</p>
+                            </div>
+                            <div class="chart-container">
+                                <svg width="100" height="100" viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="8" />
+                                    <circle cx="50" cy="50" r="40" fill="none" stroke="var(--accent)" stroke-width="8" stroke-dasharray="251.2" stroke-dashoffset="200" stroke-linecap="round" transform="rotate(-90 50 50)" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 2rem; width: 100%; margin-top: 2rem;">
+                        <div class="image-container" style="height: auto; padding: 1rem; flex-direction: column;">
+                            <img src="assets/vr_chart_key_metrics.png" alt="Key Metrics Chart" style="width: 100%; height: auto;">
+                            <p style="font-size: 0.9rem; color: var(--accent); margin-top: 1rem; font-weight: 500;">High frequency of targeting errors in inventory hitboxes directly correlated with reduced combat efficiency.</p>
+                        </div>
+                        <div class="image-container" style="height: auto; padding: 1rem; flex-direction: column;">
+                            <img src="assets/vr_chart_immersion_deltas.png" alt="Immersion Deltas" style="width: 100%; height: auto;">
+                            <p style="font-size: 0.9rem; color: var(--accent); margin-top: 1rem; font-weight: 500;">A steady decline in immersion scores was observed as cumulative interaction friction broke the user's flow state.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. Problem Statement -->
+            <section class="slide">
+                <div class="slide-bg"></div>
+                <div class="full-content">
+                    <span class="section-label">Problem Statement</span>
+                    <h2 style="font-size: 3rem; max-width: 900px; color: white !important; text-transform: none; font-weight: 400;">
+                        "How might we improve learnability and gameplay experience by identifying and mitigating interaction friction through usability testing?"</h2>
+                </div>
+            </section>
+
+            <!-- 6. Critical Failures -->
+            <section class="slide">
+                <div class="slide-bg"></div>
+                <div class="full-content">
+                    <span class="section-label">Analysis</span>
+                    <h2 style="margin-bottom: 3rem;">Critical Usability Failures</h2>
+                    <div class="feasibility-grid">
+                        <div class="challenge-card">
+                            <div class="challenge-header" style="justify-content: flex-start; gap: 1rem; border-bottom: none; padding-bottom: 0;">
+                                <div class="challenge-icon" style="background: rgba(52, 168, 83, 0.15); flex-shrink: 0;">
+                                    <i data-lucide="layers"></i>
+                                </div>
+                                <h3 style="color: var(--accent); margin: 0;">Hitbox Overlap</h3>
+                            </div>
+                            <p>Spatial inventory slots (belt) were too close, leading to accidental selection of wrong items during combat stress.</p>
+                        </div>
+                        <div class="challenge-card">
+                            <div class="challenge-header" style="justify-content: flex-start; gap: 1rem; border-bottom: none; padding-bottom: 0;">
+                                <div class="challenge-icon" style="background: rgba(52, 168, 83, 0.15); flex-shrink: 0;">
+                                    <i data-lucide="brain-circuit"></i>
+                                </div>
+                                <h3 style="color: var(--accent); margin: 0;">Mental Model Collapse</h3>
+                            </div>
+                            <p>Inconsistent throwable interactions (some lit, some not) fractured user expectations and drove abandonment.</p>
+                        </div>
+                        <div class="challenge-card">
+                            <div class="challenge-header" style="justify-content: flex-start; gap: 1rem; border-bottom: none; padding-bottom: 0;">
+                                <div class="challenge-icon" style="background: rgba(52, 168, 83, 0.15); flex-shrink: 0;">
+                                    <i data-lucide="activity"></i>
+                                </div>
+                                <h3 style="color: var(--accent); margin: 0;">Unpredictable Physics</h3>
+                            </div>
+                            <p>Virtual physics felt unpredictable; users couldn't gauge throw distance, resulting in a -0.83 score in precision.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7. Proposed Solutions -->
+            <section class="slide">
+                <div class="slide-bg"></div>
+                <div class="full-content">
+                    <span class="section-label">Solutions</span>
+                    <h2 style="margin-bottom: 3rem;">Data-Driven Strategic Fixes</h2>
+                    <div class="storyboard-grid">
+                        <div class="storyboard-item">
+                            <img src="assets/redesign proposal 1.png" alt="Spatial Buffering">
+                            <h3>Spatial Buffering</h3>
+                            <p>+20% padding between belt inventory slots to eliminate mis-grabs.</p>
+                        </div>
+                        <div class="storyboard-item">
+                            <img src="assets/redesign proposal 3.png" alt="Trajectory Arc">
+                            <h3>Trajectory Viz</h3>
+                            <p>Diegetic dashed arc upon release to provide immediate feedback on physics.</p>
+                        </div>
+                        <div class="storyboard-item">
+                            <div style="height: 180px; background: rgba(255,255,255,0.05); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                                <i data-lucide="refresh-cw" style="width: 48px; height: 48px; color: var(--primary);"></i>
+                            </div>
+                            <h3>Unified Interaction</h3>
+                            <p>Standardizing all throwables to a one-handed motor model to reduce cognitive load.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 8. Limitations -->
+            <section class="slide">
+                <div class="slide-bg"></div>
+                <div class="full-content">
+                    <span class="section-label">Limitations</span>
+                    <h2>Constraints & Future Research</h2>
+                    <div class="feasibility-grid" style="margin-top: 3rem;">
+                        <div class="challenge-card">
+                            <div class="challenge-header">
+                                <h3>Sample Size (N=8)</h3>
+                                <i data-lucide="users" class="challenge-icon"></i>
+                            </div>
+                            <p>Limited scale prevents broad generalization across all age groups and experience levels.</p>
+                        </div>
+                        <div class="challenge-card">
+                            <div class="challenge-header">
+                                <h3>Physical Fatigue</h3>
+                                <i data-lucide="battery-low" class="challenge-icon"></i>
+                            </div>
+                            <p>Longer play sessions (1hr+) need measurement to understand compounding muscle fatigue in tactical stances.</p>
+                        </div>
+                        <div class="challenge-card">
+                            <div class="challenge-header">
+                                <h3>Mathematical Validation</h3>
+                                <i data-lucide="binary" class="challenge-icon"></i>
+                            </div>
+                            <p>Next phase requires A/B testing the proposed "Gaze-Assisted" hitboxes to quantify error reduction.</p>
+                        </div>
+                    </div>
+                    <a href="index.html" class="figma-btn" style="margin-top: 4rem;">
+                        Back to Portfolio
+                    </a>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <div class="lightbox" id="lightbox">
+        <span class="close-lightbox" id="closeLightbox">&times;</span>
+        <img src="" alt="Fullscreen view" id="lightboxImg">
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script src="onboarding-script.js"></script>
+</body>
+
+</html>

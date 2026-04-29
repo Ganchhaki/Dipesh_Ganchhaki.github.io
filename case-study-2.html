@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Study — Evaluating Intrusive UI: Measuring Ad Irritation & User Frustration</title>
+  <meta name="description" content="A mixed-methods survey study quantifying ad irritation drivers among 59 online video viewers, proposing a Differential Pricing Mechanism to balance monetization and UX." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* --- Case Study Layout --- */
+    .case-study-hero {
+      min-height: 70vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 120px 0 60px;
+      position: relative;
+    }
+
+    .case-study-hero .hero-bg-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(66,133,244,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(66,133,244,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, black 30%, transparent 70%);
+      -webkit-mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, black 30%, transparent 70%);
+    }
+
+    .case-study-header { position: relative; z-index: 1; }
+
+    .case-study-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .case-study-meta {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 700px;
+      line-height: 1.7;
+    }
+
+    .case-study-body { padding: var(--section-padding) 0; }
+    .case-study-body .container { max-width: 1100px; }
+
+    .cs-section { margin-bottom: 100px; }
+
+    .cs-section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent-1);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 16px;
+    }
+
+    .cs-section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 700;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .cs-caption {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      max-width: 640px;
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+
+    /* --- Hero Big Stats --- */
+    .cs-hero-stats {
+      display: flex;
+      gap: 60px;
+      margin-top: 48px;
+      flex-wrap: wrap;
+    }
+
+    .cs-hero-stat {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cs-hero-stat-value {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 800;
+      line-height: 1;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .cs-hero-stat-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 8px;
+    }
+
+    /* --- R-generated chart images --- */
+    .cs-chart-img {
+      width: 100%;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      margin-bottom: 40px;
+      display: block;
+    }
+
+    /* --- Methodology visual flow --- */
+    .cs-method-flow {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 20px;
+      align-items: center;
+      margin: 40px 0;
+    }
+
+    .cs-method-block {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      text-align: center;
+    }
+
+    .cs-method-block h4 {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--accent-1);
+    }
+
+    .cs-method-block p {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .cs-method-arrow {
+      font-size: 2rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* --- Funnel Diagram --- */
+    .cs-funnel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      margin: 40px 0;
+    }
+
+    .cs-funnel-step {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 20px 32px;
+      text-align: center;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .cs-funnel-step:first-child {
+      width: 100%;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    }
+
+    .cs-funnel-step:nth-child(2) {
+      width: 80%;
+      border-top: none;
+    }
+
+    .cs-funnel-step:nth-child(3) {
+      width: 60%;
+      border-top: none;
+      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    }
+
+    .cs-funnel-step h4 {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .cs-funnel-step p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    /* --- Solution cards --- */
+    .cs-solution-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .cs-solution-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      transition: var(--transition);
+    }
+
+    .cs-solution-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .cs-solution-card .cs-sol-number {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 800;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .cs-solution-card h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .cs-solution-card p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* --- Findings statements --- */
+    .cs-findings-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin: 40px 0;
+    }
+
+    .cs-finding-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      transition: var(--transition);
+    }
+
+    .cs-finding-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+
+    .cs-finding-card .cs-finding-stat {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 800;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .cs-finding-card h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .cs-finding-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent-1);
+      margin-bottom: 32px;
+      transition: var(--transition);
+    }
+
+    .back-link:hover { gap: 12px; }
+
+    @media (max-width: 768px) {
+      .case-study-hero { min-height: 50vh; padding: 100px 0 40px; }
+      .cs-hero-stats { gap: 32px; }
+      .cs-method-flow { grid-template-columns: 1fr; }
+      .cs-method-arrow { transform: rotate(90deg); }
+      .cs-funnel-step:first-child,
+      .cs-funnel-step:nth-child(2),
+      .cs-funnel-step:nth-child(3) { width: 100%; }
+      .cs-solution-row { grid-template-columns: 1fr; }
+      .cs-findings-grid { grid-template-columns: 1fr; }
+      .cs-bar-label { min-width: 100px; font-size: 0.8rem; }
+      .cs-chart-block { padding: 28px 20px; }
+    }
+
+    @media (max-width: 640px) {
+      .case-study-title {
+        font-size: 2rem;
+      }
+      .case-study-meta {
+        font-size: 0.95rem;
+      }
+      .case-study-body {
+        padding: 60px 0;
+      }
+      .cs-section {
+        margin-bottom: 52px;
+      }
+      .cs-chart-img {
+        margin-bottom: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- Navigation -->
+  <nav class="nav scrolled" id="nav">
+    <div class="nav-inner">
+      <a href="index.html#hero" class="nav-logo visible" id="navLogo">Dipesh Ganchhaki</a>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html#about" class="nav-link">About</a>
+        <a href="index.html#skills" class="nav-link">Skills</a>
+        <a href="index.html#projects" class="nav-link active">Projects</a>
+        <a href="index.html#contact" class="nav-link" data-highlight>Contact</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Case Study Hero -->
+  <section class="case-study-hero">
+    <div class="hero-bg-grid"></div>
+    <div class="container">
+      <div class="case-study-header">
+        <a href="index.html#projects" class="back-link">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Back to Projects
+        </a>
+        <h1 class="case-study-title">
+          <span class="gradient-text">Evaluating Intrusive UI: Measuring Ad Irritation & User Frustration</span>
+        </h1>
+        <p class="case-study-meta">
+          Quantifying what makes online video ads unbearable — and what platforms can do about it.
+        </p>
+
+        <!-- Hero Stats — large visual numbers -->
+        <div class="cs-hero-stats">
+          <div class="cs-hero-stat">
+            <span class="cs-hero-stat-value">59</span>
+            <span class="cs-hero-stat-label">Participants Surveyed</span>
+          </div>
+          <div class="cs-hero-stat">
+            <span class="cs-hero-stat-value">9.02</span>
+            <span class="cs-hero-stat-label">Peak Annoyance (out of 10)</span>
+          </div>
+          <div class="cs-hero-stat">
+            <span class="cs-hero-stat-value">88%</span>
+            <span class="cs-hero-stat-label">YouTube Users</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Case Study Body -->
+  <div class="case-study-body">
+    <div class="container">
+
+      <!-- 01 — Methodology (visual funnel + method blocks) -->
+      <div class="cs-section">
+        <span class="cs-section-label">01 — Methodology</span>
+        <h2 class="cs-section-title">Mixed-Methods Funnel Survey</h2>
+        <p class="cs-caption">
+          A structured funnel approach moved participants from general habits to specific irritation triggers, minimizing response bias.
+        </p>
+
+        <!-- My role -->
+        <div class="cs-findings-grid" style="margin: 0 0 32px;">
+          <div class="cs-finding-card">
+            <div class="cs-finding-stat">My Role</div>
+            <h4>Survey Design &amp; Distribution</h4>
+            <p>Co‑designed the survey architecture and managed the distribution link.</p>
+          </div>
+          <div class="cs-finding-card">
+            <div class="cs-finding-stat">Owned</div>
+            <h4>Analysis &amp; Coding</h4>
+            <p>Took full ownership of the subsequent data analysis, leading both quantitative descriptive analysis and qualitative thematic coding.</p>
+          </div>
+        </div>
+
+        <!-- Funnel Diagram -->
+        <div class="cs-funnel">
+          <div class="cs-funnel-step">
+            <h4>General Viewing Habits</h4>
+            <p>Platform usage, frequency, device preferences</p>
+          </div>
+          <div class="cs-funnel-step">
+            <h4>Ad-Format Experiences</h4>
+            <p>Pre-roll, mid-roll, overlay — specific format reactions</p>
+          </div>
+          <div class="cs-funnel-step">
+            <h4>Annoyance & Coping</h4>
+            <p>1–10 Likert scale ratings + open-ended responses</p>
+          </div>
+        </div>
+
+        <!-- Quant / Qual blocks -->
+        <div class="cs-method-flow">
+          <div class="cs-method-block">
+            <h4>Quantitative</h4>
+            <p>Descriptive statistics on 1–10 Likert-scale responses for ad length, frequency, relevance, and quality.</p>
+          </div>
+          <div class="cs-method-arrow">→</div>
+          <div class="cs-method-block">
+            <h4>Qualitative</h4>
+            <p>Thematic coding on open-ended responses to extract motivations for voluntary engagement vs. avoidance.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 — Key Findings (charts dominate) -->
+      <div class="cs-section">
+        <span class="cs-section-label">02 — Key Findings</span>
+        <h2 class="cs-section-title">What the Data Revealed</h2>
+
+        <!-- R-Generated Chart: Annoyance Ratings -->
+        <img src="assets/chart_annoyance_bars.png" alt="Mean Annoyance Rating by Ad Attribute — bar chart generated with R ggplot2" class="cs-chart-img" />
+
+        <!-- R-Generated Chart: Key Metrics -->
+        <img src="assets/chart_key_metrics.png" alt="Key Study Metrics — lollipop chart generated with R ggplot2" class="cs-chart-img" />
+
+        <!-- R-Generated Chart: Ad Placement -->
+        <img src="assets/chart_placement_donut.png" alt="Most Irritating Ad Placement — donut chart generated with R ggplot2" class="cs-chart-img" />
+
+        <!-- R-Generated Chart: Coping Mechanisms -->
+        <img src="assets/chart_coping.png" alt="User Coping Mechanisms — bar chart generated with R ggplot2" class="cs-chart-img" />
+
+        <!-- Finding cards — stat-first -->
+        <div class="cs-findings-grid">
+          <div class="cs-finding-card">
+            <div class="cs-finding-stat">⚠</div>
+            <h4>Active Coping Mechanisms</h4>
+            <p>High irritation drives users to ad-blockers — threatening the ad model.</p>
+          </div>
+          <div class="cs-finding-card">
+            <div class="cs-finding-stat">9.02</div>
+            <h4>Length & Placement Drive Peak Frustration</h4>
+            <p>Extended, poorly timed interruptions disrupt cognitive flow and trigger immediate frustration.</p>
+          </div>
+          <div class="cs-finding-card">
+            <div class="cs-finding-stat">✓</div>
+            <h4>Tolerability Threshold Exists</h4>
+            <p>Users voluntarily watch ads with creative storytelling, humor, or relevant products.</p>
+          </div>
+          <div class="cs-finding-card">
+            <div class="cs-finding-stat">8.76</div>
+            <h4>Quality & Relevance Matter</h4>
+            <p>Even brief ads fail if they lack production value or contextual relevance to the viewer.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 — Solutions (visual cards) -->
+      <div class="cs-section">
+        <span class="cs-section-label">03 — Strategic Recommendations</span>
+        <h2 class="cs-section-title">Proposed Solutions</h2>
+
+        <div class="cs-solution-row">
+          <div class="cs-solution-card">
+            <div class="cs-sol-number">01</div>
+            <h4>Strategic Placement & Optimization</h4>
+            <p>Favor pre-roll over mid-roll. Enforce concise ad lengths to minimize cognitive disruption.</p>
+          </div>
+          <div class="cs-solution-card">
+            <div class="cs-sol-number">02</div>
+            <h4>Differential Pricing Mechanism</h4>
+            <p>High-quality, concise ads cost less to place. Poor-quality ads cost more, incentivizing better content and sustaining user retention.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Limitations -->
+      <div class="cs-section">
+        <span class="cs-section-label">04 — Limitations &amp; Future Research</span>
+        <h2 class="cs-section-title">Limitations &amp; Future Research</h2>
+        <div class="cs-findings-grid" style="margin: 0;">
+          <div class="cs-finding-card">
+            <div class="cs-finding-stat">88.1%</div>
+            <h4>Platform Bias</h4>
+            <p>The sample (n = 59) heavily skewed toward YouTube users (88.1%). These findings may not generalize to swipe‑based platforms like TikTok or Instagram Reels.</p>
+          </div>
+          <div class="cs-finding-card">
+            <div class="cs-finding-stat">Next</div>
+            <h4>Future Validation</h4>
+            <p>Validate these findings across different devices (e.g., Smart TVs vs. mobile) to test how context and screen size shape irritation thresholds.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Back to projects -->
+      <a href="index.html#projects" class="btn btn-ghost" style="margin-top: 20px;">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back to All Projects
+      </a>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <p class="footer-copy">&copy; 2026 — Designed &amp; built with purpose.</p>
+        <div class="footer-links">
+          <a href="https://www.linkedin.com/in/dipesh-ganchhaki" target="_blank" aria-label="LinkedIn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" stroke="currentColor" stroke-width="1.5"/><rect x="2" y="9" width="4" height="12" stroke="currentColor" stroke-width="1.5"/><circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="1.5"/></svg>
+          </a>
+
+          <a href="mailto:gdipesh540@gmail.com" aria-label="Email">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.5"/><polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="1.5"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

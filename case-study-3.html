@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mahindra XEV 9e - MR Onboarding Prototype</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo:wght@100..900&family=Inter:wght@100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="onboarding-styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+    <div id="loadingOverlay">
+        <p id="loadingText">Initializing Experience... 0%</p>
+        <div style="width: 200px; background: rgba(255,255,255,0.1); height: 2px;">
+            <div id="loadingBar"></div>
+        </div>
+    </div>
+
+    <div class="progress-bar" id="progressBar"></div>
+
+    <div class="presentation-container">
+        <div class="slides-wrapper" id="slidesWrapper">
+
+            <!-- 1. Title Slide -->
+            <section class="slide title-slide">
+                <div class="slide-bg"></div>
+                <div class="full-content">
+                    <span class="section-label">Mixed Reality</span>
+                    <h1 style="color: var(--primary); font-weight: 400;">Immersive Car<br>Onboarding</h1>
+                    <p class="body-large" style="max-width: 600px;">Converting technological complexity into customer
+                        confidence through Mixed Reality passthrough.</p>
+                </div>
+            </section>
+
+            <!-- 2. Automotive Evolution -->
+            <section class="slide">
+                <div class="slide-bg"></div>
+                <div class="content-grid">
+                    <div class="text-block">
+                        <span class="section-label">The Industry</span>
+                        <h2>Automotive Evolution</h2>
+                        <p>The shift to Software Defined Vehicles (SDV) requires a new approach to customer education.
+                        </p>
+                        <div class="list-item"><strong>Legacy:</strong> Focus on mechanical reliability and horsepower.
+                        </div>
+                        <div class="list-item"><strong>The Shift:</strong> Digital cockpits and autonomous safety
+                            layers.</div>
+                        <div class="list-item"><strong>Modern:</strong> UX as the primary differentiator in the
+                            showroom.</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="assets/onboarding/car/mahindra_car.png" alt="Mahindra XEV 9e">
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. Complexity vs. Confidence -->
+            <section class="slide">
+                <div class="slide-bg"></div>
+                <div class="content-grid">
+                    <div class="cycle-card">
+                        <button class="cycle-nav prev" id="cyclePrev">&larr;</button>
+                        <button class="cycle-nav next" id="cycleNext">&rarr;</button>
+                        <div class="cycle-dots" id="cycleDots"></div>
+                        <div class="cycle-item" style="opacity: 1; visibility: visible;">
+                            <div class="image-container"><img src="assets/onboarding/storyboard/scene 1.png" alt="The Approach">
+                            </div>
+                            <div class="cycle-text">
+                                <h3>01. The Approach</h3>
+                                <p>A customer arrives at the dealership, eager to explore the new Mahindra XEV 9e.</p>
+                            </div>
+                        </div>
+                        <div class="cycle-item">
+                            <div class="image-container"><img src="assets/onboarding/storyboard/scene 2.png"
+                                    alt="Initial Interest"></div>
+                            <div class="cycle-text">
+                                <h3>02. Initial Interest</h3>
+                                <p>Engaging with the vehicle, the customer asks basic questions about colors and
+                                    variants.</p>
+                            </div>
+                        </div>
+                        <div class="cycle-item">
+                            <div class="image-container"><img src="assets/onboarding/storyboard/scene 3.png"
+                                    alt="Information Overload"></div>
+                            <div class="cycle-text">
+                                <h3>03. VR Overload</h3>
+                                <p>Attempting to use traditional VR leads to sensory conflict and informational
+                                    overwhelm.</p>
+                            </div>
+                        </div>
+                        <div class="cycle-item">
+                            <div class="image-container"><img src="assets/onboarding/storyboard/scene 4.png"
+                                    alt="Brochure Complexity"></div>
+                            <div class="cycle-text">
+                                <h3>04. Manual Friction</h3>
+                                <p>Static brochures fail to explain complex features like ADAS or regenerative braking.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="cycle-item">
+                            <div class="image-container"><img src="assets/onboarding/storyboard/scene 5.png"
+                                    alt="Cockpit Confusion"></div>
+                            <div class="cycle-text">
+                                <h3>05. Cockpit Confusion</h3>
+                                <p>Sitting inside, the jargon-heavy sales pitch leaves the customer feeling
+                                    disconnected.</p>
+                            </div>
+                        </div>
+                        <div class="cycle-item">
+                            <div class="image-container"><img src="assets/onboarding/storyboard/scene 6.png" alt="The Hesitation">
+                            </div>
+                            <div class="cycle-text">
+                                <h3>06. The Hesitation</h3>
+                                <p>Confusion leads to "I'll think about it," directly impacting showroom conversion
+                                    rates.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-block">
+                        <span class="section-label">The Challenge</span>
+                        <h2>Complexity vs. Confidence</h2>
+                        <p>High-tech features often lead to "UX Deficit" — where users feel overwhelmed rather than
+                            empowered.</p>
+                        <div class="list-item"><strong>Invisible Tech:</strong> Features like Level 2 ADAS are hard to
+                            see.</div>
+                        <div class="list-item"><strong>Sales Impact:</strong> Confusion leads to delayed purchase
+                            decisions.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. Research Validation & Segment Analysis -->
+            <section class="slide" id="slide-4">
+                <div class="slide-bg"></div>
+                <div class="full-content"
+                    style="justify-content: flex-start; padding-top: 15vh; z-index: 100; position: relative; opacity: 1;">
+                    <div class="title-block" style="text-align: left; width: 100%; margin-bottom: 5vh; display: block;">
+                        <span class="section-label"
+                            style="font-weight: 900; letter-spacing: 0.2em; opacity: 1;">VALIDATION</span>
+                        <h2
+                            style="color: var(--primary) !important; line-height: 1.1; margin-top: 20px; text-shadow: 0 0 20px rgba(0,245,212,0.5);">
+                            Research & Market Segments</h2>
+                    </div>
+
+                    <div class="insights-bar">
+                        <div class="insight-card">
+                            <div class="card-content">
+                                <h3>56.7 PP100</h3>
+                                <span class="label">Problems Per 100</span>
+                                <p>Infotainment is the leading cause of customer dissatisfaction in 2026.</p>
+                            </div>
+                            <div class="chart-container">
+                                <svg width="100" height="100" viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)"
+                                        stroke-width="8" />
+                                    <circle cx="50" cy="50" r="40" fill="none" stroke="var(--primary)" stroke-width="8"
+                                        stroke-dasharray="251.2" stroke-dashoffset="108.7" stroke-linecap="round"
+                                        transform="rotate(-90 50 50)" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="insight-card">
+                            <div class="card-content">
+                                <h3>27% Confidence</h3>
+                                <span class="label">Buyer Confidence Score</span>
+                                <p>Only 1 in 4 buyers understand their car's safety tech.</p>
+                            </div>
+                            <div class="chart-container">
+                                <svg width="100" height="100" viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)"
+                                        stroke-width="8" />
+                                    <circle cx="50" cy="50" r="40" fill="none" stroke="var(--accent)" stroke-width="8"
+                                        stroke-dasharray="251.2" stroke-dashoffset="183.376" stroke-linecap="round"
+                                        transform="rotate(-90 50 50)" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="segment-progression">
+                        <div class="segment-card" style="border-top: 4px solid #4caf50;">
+                            <span class="badge">Screen Creep</span>
+                            <h4>Budget</h4>
+                            <p class="price">&lt; ₹12L</p>
+                            <div class="cockpit-viz">
+                                <div class="screen-icon"></div>
+                            </div>
+                            <div class="pill-container">
+                                <span class="pill">10.25" Dual Display</span>
+                                <span class="pill">Regen Toggle</span>
+                                <span class="pill">Multi-Drive</span>
+                            </div>
+                        </div>
+                        <div class="segment-card" style="border-top: 4px solid #ff9800;">
+                            <span class="badge">Feature Creep</span>
+                            <h4>Mid Range</h4>
+                            <p class="price">₹12L – ₹20L</p>
+                            <div class="cockpit-viz">
+                                <div class="screen-icon"></div>
+                                <div class="screen-icon" style="width: 40px;"></div>
+                            </div>
+                            <div class="pill-container">
+                                <span class="pill">15.6" Touchscreen</span>
+                                <span class="pill">360° Camera</span>
+                                <span class="pill">Entry ADAS</span>
+                            </div>
+                        </div>
+                        <div class="segment-card" style="border-top: 4px solid #00f5d4;">
+                            <span class="badge">Digital Cockpit</span>
+                            <h4>Premium</h4>
+                            <p class="price">&gt; ₹20L</p>
+                            <div class="cockpit-viz">
+                                <div class="screen-icon"></div>
+                                <div class="screen-icon"></div>
+                                <div class="screen-icon"></div>
+                            </div>
+                            <div class="pill-container">
+                                <span class="pill">Triple-Screen Array</span>
+                                <span class="pill">AR HUD</span>
+                                <span class="pill">Level 2+ Autonomy</span>
+                                <span class="pill">Biometric AI</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="complexity-bar"></div>
+                    <div class="complexity-labels" style="width: 100%;">
+                        <span>← Simpler</span>
+                        <span>Complexity Grows →</span>
+                        <span>Cockpit Level →</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. Problem Statement -->
+            <section class="slide">
+                <div class="slide-bg"></div>
+                <div class="full-content">
+                    <span class="section-label">Problem Statement</span>
+                    <h2
+                        style="font-size: 3rem; max-width: 900px; color: white !important; text-transform: none; font-weight: 400;">
+                        "How might we convert technological complexity into customer confidence?"</h2>
+                </div>
+            </section>
+
+            <!-- 6. Persona Ecosystem -->
+            <section class="slide">
+                <div class="slide-bg"></div>
+                <div class="full-content" style="max-width: 1400px;">
+                    <span class="section-label">Target Personas</span>
+                    <h2 style="margin-bottom: 2rem;">User Ecosystem</h2>
+
+                    <div class="persona-grid">
+                        <!-- Primary Persona -->
+                        <div class="persona-card primary">
+                            <div class="persona-header">
+                                <div class="persona-img-container">
+                                    <img src="assets/onboarding/persona/primary_persona.png" alt="Sunita Menon">
+                                </div>
+                                <div class="persona-title">
+                                    <h3>Sunita Menon, 34</h3>
+                                    <span class="persona-tag">Primary: The Upgrader</span>
+                                </div>
+                            </div>
+                            <div class="persona-bio">
+                                <div class="bio-pill">PM @ SaaS</div>
+                                <div class="bio-pill">Pune</div>
+                                <div class="bio-pill">₹22–30L Budget</div>
+                            </div>
+                            <div class="persona-details">
+                                <div class="detail-section">
+                                    <span class="detail-label">Motivations</span>
+                                    <ul>
+                                        <li>Environmental alignment (pragmatic)</li>
+                                        <li>Safety for family (ADAS priority)</li>
+                                        <li>Status signaling (tech-forward)</li>
+                                    </ul>
+                                </div>
+                                <div class="detail-section">
+                                    <span class="detail-label">Frustrations</span>
+                                    <ul>
+                                        <li>Jargon overload (ADAS, SonicSuite)</li>
+                                        <li>Manual irrelevance (300-page PDF)</li>
+                                    </ul>
+                                </div>
+                                <div class="detail-section">
+                                    <span class="detail-label">Success Metric</span>
+                                    <div class="bio-pill"
+                                        style="width: fit-content; background: rgba(0, 245, 212, 0.1); border-color: var(--primary);">
+                                        Reduce decision time</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Secondary Persona -->
+                        <div class="persona-card secondary">
+                            <div class="persona-header">
+                                <div class="persona-img-container">
+                                    <img src="assets/onboarding/persona/secondary_persona.png" alt="Rajesh Kulkarni">
+                                </div>
+                                <div class="persona-title">
+                                    <h3>Rajesh Kulkarni, 42</h3>
+                                    <span class="persona-tag">Secondary: Sales Advisor</span>
+                                </div>
+                            </div>
+                            <div class="persona-bio">
+                                <div class="bio-pill">11y Exp</div>
+                                <div class="bio-pill">Bengaluru</div>
+                                <div class="bio-pill">15 units/mo Target</div>
+                            </div>
+                            <div class="persona-details">
+                                <div class="detail-section">
+                                    <span class="detail-label">Motivations</span>
+                                    <ul>
+                                        <li>Close more deals (aged inventory)</li>
+                                        <li>Differentiate showroom via "Wow"</li>
+                                        <li>Reduce explanation fatigue</li>
+                                    </ul>
+                                </div>
+                                <div class="detail-section">
+                                    <span class="detail-label">Frustrations</span>
+                                    <ul>
+                                        <li>Explanation fatigue (repeating 15-min pitch)</li>
+                                        <li>Customer confusion due to jargon</li>
+                                        <li>New hires struggling to explain ADAS</li>
+                                    </ul>
+                                </div>
+                                <div class="detail-section">
+                                    <span class="detail-label">Success Metric</span>
+                                    <div class="bio-pill"
+                                        style="width: fit-content; background: rgba(254, 228, 64, 0.1); border-color: var(--accent);">
+                                        Increase conversion rate</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tertiary Persona -->
+                        <div class="persona-card tertiary">
+                            <div class="persona-header">
+                                <div class="persona-img-container">
+                                    <img src="assets/onboarding/persona/tertiary_persona.png" alt="Ananya Deshpande">
+                                </div>
+                                <div class="persona-title">
+                                    <h3>Ananya Deshpande, 29</h3>
+                                    <span class="persona-tag">Tertiary: Regional Manager</span>
+                                </div>
+                            </div>
+                            <div class="persona-bio">
+                                <div class="bio-pill">IIM-A MBA</div>
+                                <div class="bio-pill">Mumbai</div>
+                                <div class="bio-pill">14 Dealerships</div>
+                            </div>
+                            <div class="persona-details">
+                                <div class="detail-section">
+                                    <span class="detail-label">Motivations</span>
+                                    <ul>
+                                        <li>Prove the business case (ROI)</li>
+                                        <li>Standardize quality across region</li>
+                                        <li>Innovation storytelling for VP</li>
+                                    </ul>
+                                </div>
+                                <div class="detail-section">
+                                    <span class="detail-label">Frustrations</span>
+                                    <ul>
+                                        <li>Inconsistent CX standards across locations</li>
+                                        <li>No data on customer feature engagement</li>
+                                        <li>High manual overhead for monitoring</li>
+                                    </ul>
+                                </div>
+                                <div class="detail-section">
+                                    <span class="detail-label">Success Metric</span>
+                                    <div class="bio-pill"
+                                        style="width: fit-content; background: rgba(155, 93, 229, 0.1); border-color: var(--accent-light);">
+                                        Accelerate business ROI</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relationship-map">
+                        <div class="map-node">
+                            <span class="node-role">Ananya</span>
+                            <span class="node-action">Deploys & Monitors</span>
+                        </div>
+                        <div class="map-arrow">→</div>
+                        <div class="map-node">
+                            <span class="node-role">Rajesh</span>
+                            <span class="node-action">Facilitates Session</span>
+                        </div>
+                        <div class="map-arrow">→</div>
+                        <div class="map-node">
+                            <span class="node-role">Sunita</span>
+                            <span class="node-action">Builds Confidence</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7. Design Brief -->
+            <section class="slide">
+                <div class="slide-bg"></div>
+                <div class="full-content">
+                    <span class="section-label">Design Brief</span>
+                    <h2
+                        style="font-size: 2.2rem; max-width: 1000px; line-height: 1.6; text-transform: none; color: var(--text-main) !important; font-weight: 400;">
+                        To design an<br>
+                        <span class="hl-blue">immersive onboarding experience for electric vehicles</span><br>
+                        that transforms the
+                    </h2>
+                    <div class="brief-card">
+                        <h2 style="font-size: 2.2rem; line-height: 1.6; text-transform: none; font-weight: 400; margin: 0;">
+                            <span class="hl-yellow">overwhelming complexity of a digital cockpit</span><br>
+                            <span class="hl-yellow">into an intuitive, confidence-building first encounter.</span>
+                        </h2>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 8. The Solution -->
+            <section class="slide">
+                <div class="slide-bg"></div>
+                <div class="full-content">
+                    <span class="section-label">The Solution</span>
+                    <h2 style="margin-bottom: 3rem;">MR ONBOARDING</h2>
+                    <div class="storyboard-grid">
+                        <div class="storyboard-item">
+                            <img src="assets/onboarding/car/scenes/A.png" alt="The Pivot">
+                            <h3>The Pivot</h3>
+                            <p>Headset on. The physical cabin is augmented with digital signifiers.</p>
+                        </div>
+                        <div class="storyboard-item">
+                            <img src="assets/onboarding/car/scenes/B.png" alt="Discovery">
+                            <h3>Discovery</h3>
+                            <p>Contextual tooltips float over the triple-screen cinemascope.</p>
+                        </div>
+                        <div class="storyboard-item">
+                            <img src="assets/onboarding/car/scenes/C.png" alt="Confidence">
+                            <h3>Confidence</h3>
+                            <p>Interactive walkthrough confirms feature understanding.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 9. Why MR and not VR? -->
+            <section class="slide">
+                <div class="slide-bg"></div>
+                <div class="full-content" style="max-width: 1000px;">
+                    <span class="section-label">The Simulator Hurdle</span>
+                    <h2 style="margin-bottom: 2rem;"><span style="color: var(--primary);">Why MR</span> <span style="color: white;">and</span> <span style="color: var(--accent);">not VR?</span></h2>
+                    <p
+                        style="font-size: 1.5rem; color: var(--text-muted); margin-bottom: 4rem; font-weight: 300; max-width: 850px; line-height: 1.6;">
+                        Fully virtual simulators demand a complete digital rebuild of every car system — before a single
+                        user is onboarded.</p>
+                    <div
+                        style="display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; width: 100%; text-align: left;">
+                        <div class="list-item" style="margin-bottom: 0; padding: 2.5vh 2vw;">
+                            <div><strong
+                                    style="display: block; margin-bottom: 0.5rem; font-size: 1.2rem; color: var(--primary);">Efficiency</strong>
+                                Mixed Reality uses the real car as the platform — zero duplication needed.</div>
+                        </div>
+                        <div class="list-item" style="margin-bottom: 0; padding: 2.5vh 2vw;">
+                            <div><strong
+                                    style="display: block; margin-bottom: 0.5rem; font-size: 1.2rem; color: var(--accent);">Fragility</strong>
+                                Every new model year or OTA update breaks the virtual twin entirely.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 10. Flow 01 -->
+            <section class="slide">
+                <div class="slide-bg"></div>
+                <div class="content-grid">
+                    <div class="image-container">
+                        <img src="assets/onboarding/prototype/scanning_car.png" alt="Scanning">
+                    </div>
+                    <div class="text-block">
+                        <span class="section-label">Flow 01</span>
+                        <h2>Spatial Handshake</h2>
+                        <p>The system uses LiDAR to anchor the digital experience to the physical cockpit geometry.</p>
+                        <div class="list-item"><strong>Anchoring:</strong> Persistent world-locked UI elements.</div>
+                        <div class="list-item"><strong>Precision:</strong> Sub-centimeter alignment with dashboard
+                            controls.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 11. Flow 02 -->
+            <section class="slide">
+                <div class="slide-bg"></div>
+                <div class="content-grid">
+                    <div class="text-block">
+                        <span class="section-label">Flow 02</span>
+                        <h2>Exterior Discovery</h2>
+                        <p>Flush door handle spatial anchor with cyan outline and floating info dialog.</p>
+                        <div class="list-item"><strong>Voice:</strong> "More info" / "Less info" state management.</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="assets/onboarding/prototype/Slide 16_9 - 1.png" alt="Exterior Discovery">
+                    </div>
+                </div>
+            </section>
+
+            <!-- 12. Flow 03 -->
+            <section class="slide">
+                <div class="slide-bg"></div>
+                <div class="content-grid">
+                    <div class="image-stack-grid image-stack-grid-2">
+                        <div class="image-container"><img src="assets/onboarding/prototype/Slide 16_9 - 3.png"
+                                alt="Seat Adjustment"></div>
+                        <div class="image-container"><img src="assets/onboarding/prototype/Slide 16_9 - 4.png" alt="Profile Sync">
+                        </div>
+                    </div>
+                    <div class="text-block">
+                        <span class="section-label">Flow 03</span>
+                        <h2>Interior Setup</h2>
+                        <p>Immediate tactile validation of vehicle intelligence.</p>
+                        <div class="list-item"><strong>Sequence:</strong> Automatic seat sliding and height profile
+                            sync.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 13. Flow 04 -->
+            <section class="slide">
+                <div class="slide-bg"></div>
+                <div class="content-grid">
+                    <div class="text-block">
+                        <span class="section-label">Flow 04</span>
+                        <h2>Audio System</h2>
+                        <p>The first experiential fork: User-led discovery of infotainment value.</p>
+                        <div class="list-item"><strong>Decision:</strong> Experience vs. Skip offering user agency.
+                        </div>
+                        <div class="list-item"><strong>Tutorials:</strong> Integrated video modules for complex feature
+                            sets.</div>
+                    </div>
+                    <div class="image-stack-grid image-stack-grid-2">
+                        <div class="image-container"><img src="assets/onboarding/prototype/Slide 16_9 - 5.png" alt="Audio System">
+                        </div>
+                        <div class="image-container"><img src="assets/onboarding/prototype/Slide 16_9 - 5.2.png" alt="Skip Path">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 14. Flow 05 -->
+            <section class="slide">
+                <div class="slide-bg"></div>
+                <div class="content-grid">
+                    <div class="image-stack-grid image-stack-grid-3">
+                        <div class="image-container"><img src="assets/onboarding/prototype/Slide 16_9 - 6.png" alt="AI Camera">
+                        </div>
+                        <div class="image-container"><img src="assets/onboarding/prototype/Slide 16_9 - 7.png" alt="Valet Mode">
+                        </div>
+                        <div class="image-container"><img src="assets/onboarding/prototype/Slide 16_9 - 8.png" alt="Ambient Light">
+                        </div>
+                    </div>
+                    <div class="text-block">
+                        <span class="section-label">Flow 05</span>
+                        <h2>Parallel Tech Stack</h2>
+                        <p>Unified anchor-highlight pattern across multiple cabin features.</p>
+                        <div class="list-item"><strong>Features:</strong> AI Camera, Valet Mode, and Ambient Lighting.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 15. Flow 06 -->
+            <section class="slide">
+                <div class="slide-bg"></div>
+                <div class="content-grid">
+                    <div class="text-block">
+                        <span class="section-label">Flow 06</span>
+                        <h2>ADAS Vision</h2>
+                        <p>Visualizing the "Invisible Shield" — Radar and Camera fields of view projected in the MR
+                            visor.</p>
+                        <div class="list-item"><strong>Sensors:</strong> Understanding what the car sees.</div>
+                        <div class="list-item"><strong>Confidence:</strong> Removing the fear of autonomous braking.
+                        </div>
+                    </div>
+                    <div class="image-container">
+                        <img src="assets/onboarding/prototype/adaptive cruise control.png" alt="ADAS">
+                    </div>
+                </div>
+            </section>
+
+            <!-- 16. Spatial Design -->
+            <section class="slide">
+                <div class="slide-bg"></div>
+                <div class="content-grid">
+                    <div class="image-stack-grid image-stack-grid-2">
+                        <div class="image-container"><img src="assets/onboarding/ui/interaction_zones.png" alt="Zones"></div>
+                        <div class="image-container"><img src="assets/onboarding/images/vertical fov.png" alt="FOV"></div>
+                    </div>
+                    <div class="text-block">
+                        <span class="section-label">Spatial Ergonomics</span>
+                        <h2>Designing for the Eye</h2>
+                        <p>UI placement is optimized for cockpit depth and human field of view.</p>
+                        <div class="list-item"><strong>Focal:</strong> Content placed at 0.7m to 1.5m to avoid eye
+                            strain.</div>
+                        <div class="list-item"><strong>Zone:</strong> Critical alerts within the 30° central vision
+                            cone.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 17. UI Library -->
+            <section class="slide">
+                <div class="slide-bg"></div>
+                <div class="content-grid">
+                    <div class="image-container">
+                        <img src="assets/onboarding/MRPanel.png" alt="UI Components" style="object-fit: contain; padding: 2rem;">
+                    </div>
+                    <div class="text-block">
+                        <span class="section-label">Design System</span>
+                        <h2>The MR Interface</h2>
+                        <p>A glassmorphism-based UI language designed for visibility against complex interior
+                            backgrounds.</p>
+                        <div class="list-item"><strong>Glass:</strong> High-blur backdrops for readability.</div>
+                        <div class="list-item"><strong>Magnetic:</strong> UI elements that "snap" to physical buttons.
+                        </div>
+                        <a href="https://www.figma.com/design/eO3PU3W9jAAeMt1T6dm72u/car-onboarding?node-id=29-2243&t=Trlf9VCbdCHwZtxq-1" target="_blank" class="figma-btn">
+                            View Figma Design System
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 18. Feasibility -->
+            <section class="slide">
+                <div class="slide-bg"></div>
+                <div class="full-content">
+                    <span class="section-label">Implementation</span>
+                    <h2>Constraints & Feasibility</h2>
+                    <div class="feasibility-grid" style="margin-top: 3rem;">
+                        <div class="challenge-card">
+                            <div class="challenge-header">
+                                <h3>Tracking Accuracy</h3>
+                                <i data-lucide="target" class="challenge-icon"></i>
+                            </div>
+                            <p>MR spatial anchors can drift slightly — a tooltip meant to highlight a specific button
+                                may float off-target, especially in varying lighting conditions inside a car cabin.</p>
+                        </div>
+                        <div class="challenge-card">
+                            <div class="challenge-header">
+                                <h3>Headset Hesitation</h3>
+                                <i data-lucide="user-x" class="challenge-icon"></i>
+                            </div>
+                            <p>First-time EV buyers — already anxious about tech — may resist wearing an unfamiliar
+                                headset before they've even sat comfortably in their new car.</p>
+                        </div>
+                        <div class="challenge-card">
+                            <div class="challenge-header">
+                                <h3>Single User Session</h3>
+                                <i data-lucide="user" class="challenge-icon"></i>
+                            </div>
+                            <p>MR onboarding is inherently personal. A family buying one car means only one person gets
+                                the guided experience at a time.</p>
+                        </div>
+                        <div class="challenge-card">
+                            <div class="challenge-header">
+                                <h3>Hygiene & Sharing</h3>
+                                <i data-lucide="users" class="challenge-icon"></i>
+                            </div>
+                            <p>A headset shared across multiple customers at a dealership raises real comfort and
+                                sanitation concerns.</p>
+                        </div>
+                        <div class="challenge-card">
+                            <div class="challenge-header">
+                                <h3>Thermal Limits</h3>
+                                <i data-lucide="thermometer" class="challenge-icon"></i>
+                            </div>
+                            <p>15-minute session limit to prevent headset overheating in hot climates.</p>
+                        </div>
+                    </div>
+                    <a href="index.html" class="figma-btn" style="margin-top: 4rem;">
+                        Back to Portfolio
+                    </a>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <div class="lightbox" id="lightbox">
+        <span class="close-lightbox" id="closeLightbox">&times;</span>
+        <img src="" alt="Fullscreen view" id="lightboxImg">
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script src="onboarding-script.js"></script>
+</body>
+
+</html>
